@@ -1,7 +1,21 @@
 # Welcome to KodPetFlipper
 
-Game prototype and interface for flipper zero. Based on tamagotchi.
+        Game prototype and interface for flipper zero. Based on tamagotchi.
+
+
 ![enter image description here](https://cdn.discordapp.com/attachments/1049264648404357130/1055834291038335056/IMG_0012.png)
+
+
+# Functions
+
+- Action: Feed
+- Action: Medicine
+- Action: Play --Empty
+- Action: Random Cycle
+- Status: Hungry, Sick, Dead, Happy, Powered, God, Normal
+- Logic: Cycle Life
+- Logic: Hunger
+- Logic: Happiness
 
 # Target system
 
