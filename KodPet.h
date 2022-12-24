@@ -63,4 +63,7 @@ void updateStatus(Tamagotchi* t);
 // Print the current status of the Tamagotchi
 void printStatus(Tamagotchi* t);
 
+// System Save progress
+int savedataControl(Tamagotchi* t);
+
 #endif

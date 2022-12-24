@@ -8,11 +8,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 #include "kodpet.h"
 
 // Initialize a new Tamagotchi with default values
 Tamagotchi* createTamagotchi() {
   Tamagotchi* t = malloc(sizeof(Tamagotchi));
+    if(savedataControl(t))
+       return t;
   t->status = HUNGRY;
   t->hunger = 100;
   t->happiness = 100;
@@ -20,6 +23,39 @@ Tamagotchi* createTamagotchi() {
   t->care = 10;
   t->evolution = EGG;
   return t;
+}
+
+int savedataControl(Tamagotchi* t){
+ char *fileName = "savedata.txt";
+     if(!access(fileName, F_OK )){
+        printf("The File %s\t was Found\n",fileName);
+        return 0;
+    }else{
+        printf("The File %s\t not Found\n",fileName);
+        return 0;
+    }
+
+    if(!access(fileName, R_OK )){
+        printf("The File %s\t can be read\n",fileName);
+    }else{
+        printf("The File %s\t cannot be read\n",fileName);
+
+    }
+
+    if(!access( fileName, W_OK )){
+        printf("The File %s\t it can be Edited\n",fileName);
+        return 1;
+    }else{
+        printf("The File %s\t it cannot be Edited\n",fileName);
+        return 0;
+    }
+
+    if(!access( fileName, X_OK )){
+        printf("The File %s\t is an Executable\n",fileName);
+    }else{
+        printf("The File %s\t is not an Executable\n",fileName);
+    }
+
 }
 
 // Perform an action on the Tamagotchi
@@ -66,6 +102,7 @@ printf("######## Evolution %i ###########\n", t->evolution);
 void updateStatus(Tamagotchi* t) {
   if (t->hunger <= DEAD_HUNGER || t->happiness <= DEAD_HAPPINESS) {
     t->status = DEAD;
+    return;
   } else if (t->hunger < 20 || t->happiness < 20) {
     t->status = SICK;
   } else if(t->happiness >= 70){
@@ -77,8 +114,9 @@ void updateStatus(Tamagotchi* t) {
   {
     t->status = NORMAL;
   }
+
   if(t->care <= 0){
-    t->status = DIRTY;
+    t->status = DIRTY;   
   }
   
   if(t->cycle >= CYCLE_EVOLUTION && t->evolution != QUANTUM){
@@ -140,7 +178,6 @@ int main() {
   Tamagotchi* t = createTamagotchi();
 
   // Main game loop
-    // Main game loop
     while (t->status != DEAD) {
       // Randomly choose an action for the Tamagotchi to perform
 
@@ -154,7 +191,6 @@ int main() {
 
       // Print the current status of the Tamagotchi
       printStatus(t);
-
         t->cycle++;
     }
 
@@ -163,3 +199,6 @@ int main() {
 
     return 0;
   }
+
+
+

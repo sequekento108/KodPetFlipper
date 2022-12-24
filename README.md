@@ -22,6 +22,7 @@
 - Logic: Happiness
 - Logic: Care
 - Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber, Quantum
+- System: Save games to prevent loss of progress with updates or others
 
 # Target system
 
