@@ -17,6 +17,7 @@ Tamagotchi* createTamagotchi() {
   t->hunger = 100;
   t->happiness = 100;
   t->cycle = 0;
+  t->care = 10;
   return t;
 }
 
@@ -29,6 +30,7 @@ printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
       if (t->hunger > 100) {
         t->hunger = 100;
       }
+      t->care--;
       printf("########  LAST ACTION: FEED\n");
       break;
     case MEDICINE:
@@ -43,7 +45,16 @@ printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
         t->happiness = 100;
         t->status = HAPPY;
       }
+      t->care--;
       printf("########  LAST ACTION: PLAY\n");
+      break;
+    case CARE:
+      t->care += 10;
+      if (t->care > 30) {
+        t->care = 30;
+        t->happiness += HAPPY_FOR_CARE;
+      }
+      printf("########  LAST ACTION: CARE\n");
       break;
   }
   
@@ -63,6 +74,9 @@ void updateStatus(Tamagotchi* t) {
   }else
   {
     t->status = NORMAL;
+  }
+  if(t->care <= 0){
+    t->status = DIRTY;
   }
 }
 
@@ -92,12 +106,15 @@ void printStatus(Tamagotchi* t) {
     case NORMAL:
       printf("Status: NORMAL\n");
       break;
+    case DIRTY:
+      printf("Status: DIRTY\n");
+      break;
     case DEAD:
       printf("Status: Dead\n");
       break;
   }
 
-  printf("######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 9. Random Cycle Time \n");
+  printf("######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n");
   scanf("%d",&selectionoptionuser);
 
   if(selectionoptionuser == 9){

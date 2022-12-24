@@ -9,16 +9,20 @@
 #define POWERED 4
 #define GOD 5
 #define NORMAL 6
+#define DIRTY 7
 
 
 //Config Game
 #define CYCLE_HUNTER 5
 #define CYCLE_HAPPINESS 5
+#define HAPPY_FOR_CARE 5
 
 // Tamagotchi actions
 #define FEED 0
 #define MEDICINE 1
 #define PLAY 2
+#define RANDOM 3
+#define CARE 4
 
 // Tamagotchi struct
 typedef struct {
@@ -26,6 +30,7 @@ typedef struct {
   int hunger;
   int happiness;
   int cycle;
+  int care;
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values
