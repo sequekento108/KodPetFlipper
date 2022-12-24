@@ -18,12 +18,14 @@ Tamagotchi* createTamagotchi() {
   t->happiness = 100;
   t->cycle = 0;
   t->care = 10;
+  t->evolution = EGG;
   return t;
 }
 
 // Perform an action on the Tamagotchi
 void doAction(Tamagotchi* t, int action) {
 printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
+printf("######## Evolution %i ###########\n", t->evolution);
   switch (action) {
     case FEED:
       t->hunger += 13;
@@ -62,7 +64,7 @@ printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
 
 // Update the Tamagotchi's status based on its current values
 void updateStatus(Tamagotchi* t) {
-  if (t->hunger <= -10 || t->happiness == 0) {
+  if (t->hunger <= DEAD_HUNGER || t->happiness <= DEAD_HAPPINESS) {
     t->status = DEAD;
   } else if (t->hunger < 20 || t->happiness < 20) {
     t->status = SICK;
@@ -78,6 +80,12 @@ void updateStatus(Tamagotchi* t) {
   if(t->care <= 0){
     t->status = DIRTY;
   }
+  
+  if(t->cycle >= CYCLE_EVOLUTION && t->evolution != QUANTUM){
+    t->evolution++;
+    t->cycle = 0;
+  }
+
 }
 
 // Print the current status of the Tamagotchi

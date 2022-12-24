@@ -16,10 +16,12 @@
 - Action: Play --Empty
 - Action: Random Cycle
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty
+- Personality: White, Red, Black, Green
 - Logic: Cycle Life
 - Logic: Hunger
 - Logic: Happiness
 - Logic: Care
+- Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber, Quantum
 
 # Target system
 

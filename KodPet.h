@@ -11,11 +11,28 @@
 #define NORMAL 6
 #define DIRTY 7
 
+//SYSTEM OF EVOLUTIONS
+#define EGG 0
+#define BABY 1
+#define NANO 2
+#define MATURE 3
+#define CYBER 4
+#define QUANTUM 5
+
+//PERSONALITY
+#define WHITE 0
+#define RED 1
+#define BLACK 2
+#define GREEN 3
+
 
 //Config Game
 #define CYCLE_HUNTER 5
 #define CYCLE_HAPPINESS 5
 #define HAPPY_FOR_CARE 5
+#define DEAD_HUNGER -10
+#define DEAD_HAPPINESS -30
+#define CYCLE_EVOLUTION 10
 
 // Tamagotchi actions
 #define FEED 0
@@ -31,6 +48,7 @@ typedef struct {
   int happiness;
   int cycle;
   int care;
+  int evolution;
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values
