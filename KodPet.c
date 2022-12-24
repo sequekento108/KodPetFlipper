@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "KodPet.h"
+#include "kodpet.h"
 
 // Initialize a new Tamagotchi with default values
 Tamagotchi* createTamagotchi() {
@@ -55,6 +55,9 @@ void updateStatus(Tamagotchi* t) {
 
 // Print the current status of the Tamagotchi
 void printStatus(Tamagotchi* t) {
+  int selectionoptionuser = 0;
+
+  printf("########\n");
   printf("Hunger: %d\n", t->hunger);
   printf("Happiness: %d\n", t->happiness);
   switch (t->status) {
@@ -68,6 +71,10 @@ void printStatus(Tamagotchi* t) {
       printf("Status: Dead\n");
       break;
   }
+
+  printf("######## Select Option: \n 1. Continue Cycle Time. \n");
+  scanf("%d",&selectionoptionuser);
+  printf("########   Selected: %i\n", selectionoptionuser);
 }
 
 int main() {
@@ -91,7 +98,8 @@ int main() {
 
       // Print the current status of the Tamagotchi
       printStatus(t);
-      printf("-----Next Test\n");
+      printf("-----Next Test \n");
+
     }
 
     // Game over
