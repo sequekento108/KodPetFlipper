@@ -8,6 +8,10 @@ Game prototype and interface for flipper zero. Based on tamagotchi.
 - [flipperdevices](https://github.com/flipperdevices)/**[flipperzero-firmware](https://github.com/flipperdevices/flipperzero-firmware)**
 - [DarkFlippers](https://github.com/DarkFlippers)/**[unleashed-firmware](https://github.com/DarkFlippers/unleashed-firmware)**
 
+
+
+![enter image description here](https://cdn.discordapp.com/attachments/1049264648404357130/1055834291038335056/IMG_0012.png)
+
 # License
 
 Copyright (c) 2022-2023 DevJow
