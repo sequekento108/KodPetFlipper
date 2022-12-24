@@ -16,6 +16,7 @@ typedef struct {
   int status;
   int hunger;
   int happiness;
+  int cycle;
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values
