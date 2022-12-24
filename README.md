@@ -9,6 +9,12 @@ Game prototype and interface for flipper zero. Based on tamagotchi.
 - [DarkFlippers](https://github.com/DarkFlippers)/**[unleashed-firmware](https://github.com/DarkFlippers/unleashed-firmware)**
 
 
+# Test
+*Required component for develop in C.
+
+1. gcc -o test kodpet.c
+2. ./test
+
 
 ![enter image description here](https://cdn.discordapp.com/attachments/1049264648404357130/1055834291038335056/IMG_0012.png)
 
