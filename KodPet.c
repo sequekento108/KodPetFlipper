@@ -91,6 +91,7 @@ int main() {
 
       // Print the current status of the Tamagotchi
       printStatus(t);
+      printf("-----Next Test\n");
     }
 
     // Game over
