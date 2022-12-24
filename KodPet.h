@@ -8,6 +8,7 @@
 #define HAPPY 3
 #define POWERED 4
 #define GOD 5
+#define NORMAL 6
 
 
 //Config Game

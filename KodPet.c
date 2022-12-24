@@ -29,20 +29,21 @@ printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
       if (t->hunger > 100) {
         t->hunger = 100;
       }
-      printf("######## FEED\n");
+      printf("########  LAST ACTION: FEED\n");
       break;
     case MEDICINE:
       if (t->status == SICK) {
         t->status = HAPPY;
       }
-      printf("######## MEDICINE\n");
+      printf("########  LAST ACTION: MEDICINE\n");
       break;
     case PLAY:
       t->happiness += 12;
       if (t->happiness > 100) {
         t->happiness = 100;
+        t->status = HAPPY;
       }
-      printf("######## PLAY\n");
+      printf("########  LAST ACTION: PLAY\n");
       break;
   }
   
@@ -50,15 +51,18 @@ printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
 
 // Update the Tamagotchi's status based on its current values
 void updateStatus(Tamagotchi* t) {
-  if (t->hunger == 0 || t->happiness == 0) {
+  if (t->hunger <= -10 || t->happiness == 0) {
     t->status = DEAD;
   } else if (t->hunger < 20 || t->happiness < 20) {
     t->status = SICK;
   } else if(t->happiness >= 70){
     t->status = HAPPY;
   }
-  else {
+  else if(t->hunger < 50){
     t->status = HUNGRY;
+  }else
+  {
+    t->status = NORMAL;
   }
 }
 
@@ -78,6 +82,15 @@ void printStatus(Tamagotchi* t) {
       break;
     case HAPPY:
       printf("Status: HAPPY\n");
+      break;
+    case POWERED:
+      printf("Status: POWERED\n");
+      break;
+    case GOD:
+      printf("Status: GOD\n");
+      break;
+    case NORMAL:
+      printf("Status: NORMAL\n");
       break;
     case DEAD:
       printf("Status: Dead\n");
