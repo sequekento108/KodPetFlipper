@@ -14,8 +14,8 @@
 Tamagotchi* createTamagotchi() {
   Tamagotchi* t = malloc(sizeof(Tamagotchi));
   t->status = HUNGRY;
-  t->hunger = 50;
-  t->happiness = 50;
+  t->hunger = 100;
+  t->happiness = 100;
   t->cycle = 0;
   return t;
 }
@@ -25,7 +25,7 @@ void doAction(Tamagotchi* t, int action) {
 printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
   switch (action) {
     case FEED:
-      t->hunger += 10;
+      t->hunger += 13;
       if (t->hunger > 100) {
         t->hunger = 100;
       }
@@ -33,12 +33,12 @@ printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
       break;
     case MEDICINE:
       if (t->status == SICK) {
-        t->status = HUNGRY;
+        t->status = HAPPY;
       }
       printf("######## MEDICINE\n");
       break;
     case PLAY:
-      t->happiness += 10;
+      t->happiness += 12;
       if (t->happiness > 100) {
         t->happiness = 100;
       }
@@ -54,7 +54,10 @@ void updateStatus(Tamagotchi* t) {
     t->status = DEAD;
   } else if (t->hunger < 20 || t->happiness < 20) {
     t->status = SICK;
-  } else {
+  } else if(t->happiness >= 70){
+    t->status = HAPPY;
+  }
+  else {
     t->status = HUNGRY;
   }
 }
@@ -72,6 +75,9 @@ void printStatus(Tamagotchi* t) {
       break;
     case SICK:
       printf("Status: Sick\n");
+      break;
+    case HAPPY:
+      printf("Status: HAPPY\n");
       break;
     case DEAD:
       printf("Status: Dead\n");
@@ -102,8 +108,8 @@ int main() {
 
 
       // Decrease hunger and happiness over time
-      t->hunger -= 5;
-      t->happiness -= 5;
+      t->hunger -= CYCLE_HUNTER;
+      t->happiness -= CYCLE_HAPPINESS;
 
       // Update the Tamagotchi's status based on its current values
       updateStatus(t);

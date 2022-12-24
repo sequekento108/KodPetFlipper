@@ -5,6 +5,14 @@
 #define HUNGRY 0
 #define SICK 1
 #define DEAD 2
+#define HAPPY 3
+#define POWERED 4
+#define GOD 5
+
+
+//Config Game
+#define CYCLE_HUNTER 5
+#define CYCLE_HAPPINESS 5
 
 // Tamagotchi actions
 #define FEED 0
