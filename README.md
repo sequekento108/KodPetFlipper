@@ -27,7 +27,7 @@
 # Target system
 
 - [flipperdevices](https://github.com/flipperdevices)/**[flipperzero-firmware](https://github.com/flipperdevices/flipperzero-firmware)**
-- [DarkFlippers](https://github.com/DarkFlippers)/**[unleashed-firmware](https://github.com/DarkFlippers/unleashed-firmware)**
+- [ClaraCrazy/Flipper-Xtreme](https://github.com/ClaraCrazy/Flipper-Xtreme)
 
 
 # Test
