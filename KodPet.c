@@ -102,6 +102,10 @@ void updateStatus(Tamagotchi* t) {
   if(t->cycle >= CYCLE_EVOLUTION && t->evolution != QUANTUM){
     t->evolution++;
     t->cycle = 0;
+    t->level++;
+  }
+  if (t->evolution == QUANTUM) {
+     t->level++;
   }
 
 }
