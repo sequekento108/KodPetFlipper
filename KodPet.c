@@ -26,7 +26,7 @@ Tamagotchi* createTamagotchi() {
 }
 
 int savedataControl(Tamagotchi* t){
- char *fileName = "savedata.txt";
+ char *fileName = "data.txt";
      if(!access(fileName, F_OK )){
         printf("The File %s\t was Found\n",fileName);
         FILE * file_pointer;
