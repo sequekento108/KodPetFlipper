@@ -29,9 +29,42 @@ int savedataControl(Tamagotchi* t){
  char *fileName = "savedata.txt";
      if(!access(fileName, F_OK )){
         printf("The File %s\t was Found\n",fileName);
+        FILE * file_pointer;
+        char buffer[30], c;
+
+        file_pointer = fopen(fileName, "r");
+        printf("----read a line progress----\n");
+        fgets(buffer, 50, file_pointer);
+        printf("%s\n", buffer);
+
+        printf("----read and parse data progress----\n");
+        file_pointer = fopen(fileName, "r"); //reset the pointer
+        char str1[10], str2[2], str3[20], str4[2];
+        fscanf(file_pointer, "%s %s %s %s", str1, str2, str3, str4);
+        printf("Read Data |%s|\n", str1);
+        printf("Read Data |%s|\n", str2);
+        printf("Read Data |%s|\n", str3);
+        printf("Read Data |%s|\n", str4);
+
+        printf("----read the entire file progress----\n");
+
+        file_pointer = fopen(fileName, "r"); //reset the pointer
+        while ((c = getc(file_pointer)) != EOF) printf("%c", c);
+
+        fclose(file_pointer);
         return 0;
     }else{
         printf("The File %s\t not Found\n",fileName);
+        int i;
+        FILE * fptr;
+        char fn[50];
+        char str[] = "KodPetProgress test\n";
+        fptr = fopen(fileName, "w"); // "w" defines "writing mode"
+        for (i = 0; str[i] != '\n'; i++) {
+            /* write to file using fputc() function */
+            fputc(str[i], fptr);
+        }
+        fclose(fptr);
         return 0;
     }
 
@@ -47,7 +80,6 @@ int savedataControl(Tamagotchi* t){
         return 1;
     }else{
         printf("The File %s\t it cannot be Edited\n",fileName);
-        return 0;
     }
 
     if(!access( fileName, X_OK )){
@@ -94,6 +126,10 @@ printf("######## Evolution %i ###########\n", t->evolution);
       }
       printf("########  LAST ACTION: CARE\n");
       break;
+  }
+
+  if(t->status == DIRTY){
+    t->happiness--;
   }
   
 }

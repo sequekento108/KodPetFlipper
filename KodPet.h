@@ -24,6 +24,7 @@
 #define RED 1
 #define BLACK 2
 #define GREEN 3
+#define GREY 4
 
 
 //Config Game

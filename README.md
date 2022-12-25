@@ -16,7 +16,7 @@
 - Action: Play --Empty
 - Action: Random Cycle
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty
-- Personality: White, Red, Black, Green
+- Personality: White, Red, Black, Green, Grey
 - Logic: Cycle Life
 - Logic: Hunger
 - Logic: Happiness
