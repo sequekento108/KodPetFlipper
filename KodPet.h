@@ -44,12 +44,18 @@
 
 // Tamagotchi struct
 typedef struct {
-  int status;
-  int hunger;
-  int happiness;
-  int cycle;
-  int care;
-  int evolution;
+  int status; //1
+  int hunger; //2
+  int happiness; //3
+  int cycle; //4
+  int care; //5
+  int evolution; //6
+  int level; //7
+  int intelligence;//8
+  int strength; //9
+  int agility; //10
+  int critic; //11
+  int defend; //12
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values

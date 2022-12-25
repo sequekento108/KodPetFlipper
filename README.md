@@ -24,6 +24,7 @@
 - Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber, Quantum
 - System: Save games to prevent loss of progress with updates or others
 - System: Encryption of the savedata to avoid easy cheats
+- Statictics: Intelligence, strength, agility, critic, defend
 
 # Target system
 
