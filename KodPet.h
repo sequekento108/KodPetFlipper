@@ -65,6 +65,10 @@ void updateStatus(Tamagotchi* t);
 void printStatus(Tamagotchi* t);
 
 // System Save progress
-int savedataControl(Tamagotchi* t);
+int savedataControl(Tamagotchi* t, char* mode);
+
+int parseInt(char* chars);
+
+int powInt(int x, int y);
 
 #endif

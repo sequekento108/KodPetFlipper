@@ -9,28 +9,52 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <string.h>
 #include "kodpet.h"
 
 // Initialize a new Tamagotchi with default values
 Tamagotchi* createTamagotchi() {
   Tamagotchi* t = malloc(sizeof(Tamagotchi));
-    if(savedataControl(t))
-       return t;
   t->status = HUNGRY;
   t->hunger = 100;
   t->happiness = 100;
   t->cycle = 0;
   t->care = 10;
   t->evolution = EGG;
+      if(savedataControl(t, "n"))
+       return t;
   return t;
 }
 
-int savedataControl(Tamagotchi* t){
+int parseInt(char* chars)
+{
+    int sum = 0;
+    int len = strlen(chars);
+    for (int x = 0; x < len; x++)
+    {
+        int n = chars[len - (x + 1)] - '0';
+        sum = sum + powInt(n, x);
+    }
+    return sum;
+}
+
+int powInt(int x, int y)
+{
+    for (int i = 0; i < y; i++)
+    {
+        x *= 10;
+    }
+    return x;
+}
+
+int savedataControl(Tamagotchi* t, char* mode){
  char *fileName = "data.txt";
-     if(!access(fileName, F_OK )){
+ char *normal = "n";
+ char *save = "s";
+     if(!access(fileName, F_OK) && mode == normal){
         printf("The File %s\t was Found\n",fileName);
         FILE * file_pointer;
-        char buffer[30], c;
+        char buffer[64], c;
 
         file_pointer = fopen(fileName, "r");
         printf("----read a line progress----\n");
@@ -39,28 +63,46 @@ int savedataControl(Tamagotchi* t){
 
         printf("----read and parse data progress----\n");
         file_pointer = fopen(fileName, "r"); //reset the pointer
-        char str1[10], str2[2], str3[20], str4[2];
-        fscanf(file_pointer, "%s %s %s %s", str1, str2, str3, str4);
+        char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10];
+        fscanf(file_pointer, "%s %s %s %s %s %s", str1, str2, str3, str4, str5, str6);
         printf("Read Data |%s|\n", str1);
         printf("Read Data |%s|\n", str2);
         printf("Read Data |%s|\n", str3);
         printf("Read Data |%s|\n", str4);
+        printf("Read Data |%s|\n", str5);
+        printf("Read Data |%s|\n", str6);
 
         printf("----read the entire file progress----\n");
 
         file_pointer = fopen(fileName, "r"); //reset the pointer
         while ((c = getc(file_pointer)) != EOF) printf("%c", c);
 
+        t->status = parseInt(str1);
+        t->hunger = parseInt(str2);
+        t->happiness = parseInt(str3);
+        t->cycle = parseInt(str4);
+        t->care = parseInt(str5);
+        t->evolution = parseInt(str6);
+
+
+
         fclose(file_pointer);
         return 0;
     }else{
+      if(mode != save){
         printf("The File %s\t not Found\n",fileName);
+      }else
+      {
+        printf("Saved progress control");
+      }
+        
         int i;
         FILE * fptr;
-        char fn[50];
-        char str[] = "KodPetProgress test\n";
+        char fn[64];
+        char str[64];
+        snprintf(str, sizeof(str),"%i %i %i %i %i %i", t->status, t->hunger, t->happiness, t->cycle, t->care, t->evolution);
         fptr = fopen(fileName, "w"); // "w" defines "writing mode"
-        for (i = 0; str[i] != '\n'; i++) {
+        for (i = 0; str[i]; i++) {
             /* write to file using fputc() function */
             fputc(str[i], fptr);
         }
@@ -228,6 +270,9 @@ int main() {
       // Print the current status of the Tamagotchi
       printStatus(t);
         t->cycle++;
+
+      if(savedataControl(t, "s") == 0)
+       printf("Saved progress");
     }
 
     // Game over
