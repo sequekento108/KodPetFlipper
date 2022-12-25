@@ -24,6 +24,12 @@ Tamagotchi* createTamagotchi() {
   t->cycle = 0;
   t->care = 10;
   t->evolution = EGG;
+  t->level = 0;
+  t->intelligence = 1;
+  t->strength = 1;
+  t->agility = 1;
+  t->critic = 0;
+  t->defend = 1;
       if(savedataControl(t, "n"))
        return t;
   return t;
@@ -32,8 +38,6 @@ Tamagotchi* createTamagotchi() {
 
 // Perform an action on the Tamagotchi
 void doAction(Tamagotchi* t, int action) {
-printf("\n\n\n\n######## Cycle %i ###########\n", t->cycle);
-printf("######## Evolution %i ###########\n", t->evolution);
   switch (action) {
     case FEED:
       t->hunger += 13;
@@ -135,8 +139,15 @@ void printStatus(Tamagotchi* t) {
       printf("Status: Dead\n");
       break;
   }
-
-  printf("######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n");
+    printf("Cycle: %i\n", t->cycle);
+    printf("Evolution: %i\n", t->evolution);
+    printf("Level: %i\n", t->level);
+    printf("Intelligence: %i\n", t->intelligence);
+    printf("Strength: %i\n", t->strength);
+    printf("Agility: %i\n", t->agility);
+    printf("Critic: %i\n", t->critic);
+    printf("Defend: %i\n", t->defend);
+  printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n");
   scanf("%d",&selectionoptionuser);
 
   if(selectionoptionuser == 9){

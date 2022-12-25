@@ -145,14 +145,21 @@ int savedataControl(Tamagotchi* t, char* mode){
 
         printf("----read and parse data progress----\n");
         file_pointer = fopen(fileName, "r"); //reset the pointer
-        char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10];
-        fscanf(file_pointer, "%s %s %s %s %s %s", str1, str2, str3, str4, str5, str6);
+        char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10], str7[10],str8[10],str9[10],str10[10],
+        str11[10],str12[10];
+        fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s", str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12);
         printf("Read Data |%s|\n", str1);
         printf("Read Data |%s|\n", str2);
         printf("Read Data |%s|\n", str3);
         printf("Read Data |%s|\n", str4);
         printf("Read Data |%s|\n", str5);
         printf("Read Data |%s|\n", str6);
+        printf("Read Data |%s|\n", str7);
+        printf("Read Data |%s|\n", str8);
+        printf("Read Data |%s|\n", str9);
+        printf("Read Data |%s|\n", str10);
+        printf("Read Data |%s|\n", str11);
+        printf("Read Data |%s|\n", str12);
 
         printf("----read the entire file progress----\n");
 
@@ -165,6 +172,12 @@ int savedataControl(Tamagotchi* t, char* mode){
         t->cycle = parseInt(str4);
         t->care = parseInt(str5);
         t->evolution = parseInt(str6);
+        t->level = parseInt(str7);
+        t->intelligence = parseInt(str8);
+        t->strength = parseInt(str9);
+        t->agility = parseInt(str10);
+        t->critic = parseInt(str11);
+        t->defend = parseInt(str12);
 
 
 
@@ -183,7 +196,8 @@ int savedataControl(Tamagotchi* t, char* mode){
         FILE * fptr;
         char fn[64];
         char str[64];
-        snprintf(str, sizeof(str),"%i %i %i %i %i %i", t->status, t->hunger, t->happiness, t->cycle, t->care, t->evolution);
+        snprintf(str, sizeof(str),"%i %i %i %i %i %i %i %i %i %i %i %i", t->status, t->hunger, t->happiness, t->cycle, t->care, t->evolution,
+        t->level, t->intelligence, t->strength, t->agility, t->critic, t->defend);
         fptr = fopen(fileName, "w"); // "w" defines "writing mode"
         for (i = 0; str[i]; i++) {
             /* write to file using fputc() function */
