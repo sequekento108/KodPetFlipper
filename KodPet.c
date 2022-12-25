@@ -52,6 +52,7 @@ int savedataControl(Tamagotchi* t, char* mode){
  char *normal = "n";
  char *save = "s";
      if(!access(fileName, F_OK) && mode == normal){
+        dataopen();
         printf("The File %s\t was Found\n",fileName);
         FILE * file_pointer;
         char buffer[64], c;
@@ -87,6 +88,7 @@ int savedataControl(Tamagotchi* t, char* mode){
 
 
         fclose(file_pointer);
+        dataclose();
         return 0;
     }else{
       if(mode != save){
@@ -95,7 +97,7 @@ int savedataControl(Tamagotchi* t, char* mode){
       {
         printf("Saved progress control");
       }
-        
+
         int i;
         FILE * fptr;
         char fn[64];
@@ -107,6 +109,7 @@ int savedataControl(Tamagotchi* t, char* mode){
             fputc(str[i], fptr);
         }
         fclose(fptr);
+        dataclose();
         return 0;
     }
 
@@ -279,6 +282,115 @@ int main() {
     printf("Game over!\n");
 
     return 0;
+  }
+
+  void dataopen(){
+    char ch, *fname;
+	FILE *fpts, *fptt;
+	
+	printf("\n\n Decrypt a text file :\n");
+	printf("--------------------------\n"); 	
+	
+
+  fname = "data.txt";
+	
+	fpts=fopen(fname, "w");
+	if(fpts==NULL)
+	{
+		printf(" File does not exists or error in opening..!!");
+		exit(7);
+	}
+	fptt=fopen("temp.txt", "r");
+	if(fptt==NULL)
+	{
+		printf(" File does not exists or error in opening..!!");
+		fclose(fpts);
+		exit(9);
+	}
+	while(1)
+	{
+		ch=fgetc(fptt);
+		if(ch==EOF)
+		{
+			break;
+		}
+		else
+		{
+			ch=ch-100;
+			fputc(ch, fpts);
+		}
+	}
+	printf(" The file %s desprotected successfully..!!\n\n",fname);
+	fclose(fpts);
+	fclose(fptt);
+  }
+  void dataclose(){
+    	char *fname, ch;
+	FILE *fpts, *fptt;
+	
+	printf("\n\n Encrypt a text file :\n");
+	printf("--------------------------\n"); 	
+	
+
+	//scanf("%s",fname);	
+  fname = "data.txt";
+
+	fpts=fopen(fname, "r");
+	if(fpts==NULL)
+	{
+		printf(" File does not exists or error in opening..!!");
+		exit(1);
+	}
+	fptt=fopen("temp.txt", "w");
+	if(fptt==NULL)
+	{
+		printf(" Error in creation of file temp.txt ..!!");
+		fclose(fpts);
+		exit(2);
+	}
+	while(1)
+	{
+		ch=fgetc(fpts);
+		if(ch==EOF)
+		{
+			break;
+		}
+		else
+		{
+			ch=ch+100;
+			fputc(ch, fptt);
+		}
+	}
+	fclose(fpts);
+	fclose(fptt);
+	fpts=fopen(fname, "w");
+	if(fpts==NULL)
+	{
+		printf(" File does not exists or error in opening..!!");
+		exit(3);
+	}
+	fptt=fopen("temp.txt", "r");
+	if(fptt==NULL)
+	{
+		printf(" File does not exists or error in opening..!!");
+		fclose(fpts);
+		exit(4);
+	}
+	while(1)
+	{
+		ch=fgetc(fptt);
+		if(ch==EOF)
+		{
+			break;
+		}
+		else
+		{
+			fputc(ch, fpts);
+		}
+	}
+	printf(" File %s successfully protected ..!!\n\n", fname);
+	fclose(fpts);
+	fclose(fptt);
   }
 
 
