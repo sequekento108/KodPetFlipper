@@ -14,6 +14,9 @@
 - Action: Medicine
 - Action: Clean/Care
 - Action: Study
+- Action: Work
+- Action: Investigate
+- Action: Train
 - Action: Play --Empty
 - Action: Random Cycle
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty
@@ -26,7 +29,7 @@
 - System: Save games to prevent loss of progress with updates or others
 - System: Encryption of the savedata to avoid easy cheats
 - Statictics: Intelligence, strength, agility, critic, defend, life
-- System: Level.
+- System: Level
 
 # Target system
 

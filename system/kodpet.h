@@ -43,6 +43,9 @@
 #define RANDOM 3
 #define CARE 4
 #define STUDY 5
+#define WORK 6
+#define INVESTIGATE 7
+#define TRAIN 8
 
 // Tamagotchi struct
 typedef struct {

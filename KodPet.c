@@ -43,6 +43,8 @@ Tamagotchi *createTamagotchi() {
 
 // Perform an action on the Tamagotchi
 void doAction(Tamagotchi *t, int action) {
+  int probcritic = rand() % 10;
+  int probcritictmp = rand() % 10;
   switch (action) {
   case FEED:
     t->hunger += 13;
@@ -81,7 +83,27 @@ void doAction(Tamagotchi *t, int action) {
     break;
   case STUDY:
     t->intelligence++;
+    t->hunger -= 30;
     printf("########  LAST ACTION: STUDY\n");
+    break;
+  case WORK:
+    t->strength++;
+    t->hunger -= 30;
+    t->happiness -= 10;
+    printf("########  LAST ACTION: WORK\n");
+    break;
+  case INVESTIGATE:
+    t->agility++;
+    t->hunger -= 38;
+    printf("########  LAST ACTION: INVESTIGATE\n");
+    break;
+  case TRAIN:
+    if (probcritic == probcritictmp)
+      t->critic++;
+    t->defend++;
+    t->hunger -= 60;
+    t->happiness++;
+    printf("########  LAST ACTION: TRAIN\n");
     break;
   }
 
@@ -96,7 +118,7 @@ void updateStatus(Tamagotchi *t) {
   if (t->hunger <= DEAD_HUNGER || t->happiness <= DEAD_HAPPINESS) {
     if (t->life >= 1) {
       t->life -= DAMAGE_FOR_CARE;
-      t->strength--;     
+      t->strength--;
       if (t->life >= 1)
         return;
     }
@@ -173,7 +195,7 @@ void printStatus(Tamagotchi *t) {
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
   printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-         "4. CARE \n 5. STUDY \n 9. Random Cycle Time \n 99. Close test \n");
+         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int action = rand() % 3;
