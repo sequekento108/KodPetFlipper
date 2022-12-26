@@ -10,7 +10,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <string.h>
-#include "kodpet.h"
+#include "system/kodpet.h"
 #include "system/savedata.h"
 #include "system/savedata.c"
 
@@ -162,7 +162,7 @@ void printStatus(Tamagotchi* t) {
     case DEAD:
       printf("Status: Dead\n");
       break;
-  }
+   }
     printf("Cycle: %i\n", t->cycle);
     printf("Evolution: %i\n", t->evolution);
     printf("Level: %i\n", t->level);
@@ -172,15 +172,23 @@ void printStatus(Tamagotchi* t) {
     printf("Critic: %i\n", t->critic);
     printf("Defend: %i\n", t->defend);
     printf("Life: %i\n", t->life);
-    printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n");
+    printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n 99. Close test \n");
     scanf("%d",&selectionoptionuser);
 
-  if(selectionoptionuser == 9){
-      int action = rand() % 3;
-      doAction(t, action);
-  }else{
-  doAction(t, selectionoptionuser);
+     int action = rand() % 3;
+  switch (selectionoptionuser) {
+    case 9:
+
+     doAction(t, action);
+     break;
+    case 99:
+     exit(0);
+     break;
+    default:
+     doAction(t, selectionoptionuser);
+     break;
   }
+
   printf("########   Selected: %i\n", selectionoptionuser);
 }
 

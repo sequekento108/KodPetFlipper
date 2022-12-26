@@ -37,7 +37,7 @@
 *Required component for develop in C.
 
 1. gcc -o test kodpet.c
-2. Start new game deleted the file: data.txt
+2. Start new game deleted the file: /memorycard/data.txt and /memorycard/temp.txt
 2. ./test
 
 
