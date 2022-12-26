@@ -6,7 +6,7 @@
 	printf("--------------------------\n"); 	
 	
 
-  fname = "data.txt";
+  fname = "memorycard/data.txt";
 	
 	fpts=fopen(fname, "w");
 	if(fpts==NULL)
@@ -14,7 +14,7 @@
 		printf(" File does not exists or error in opening..!!");
 		exit(7);
 	}
-	fptt=fopen("temp.txt", "r");
+	fptt=fopen("memorycard/temp.txt", "r");
 	if(fptt==NULL)
 	{
 		printf(" File does not exists or error in opening..!!");
@@ -47,7 +47,7 @@
 	
 
 	//scanf("%s",fname);	
-  fname = "data.txt";
+  fname = "memorycard/data.txt";
 
 	fpts=fopen(fname, "r");
 	if(fpts==NULL)
@@ -55,7 +55,7 @@
 		printf(" File does not exists or error in opening..!!");
 		exit(1);
 	}
-	fptt=fopen("temp.txt", "w");
+	fptt=fopen("memorycard/temp.txt", "w");
 	if(fptt==NULL)
 	{
 		printf(" Error in creation of file temp.txt ..!!");
@@ -83,7 +83,7 @@
 		printf(" File does not exists or error in opening..!!");
 		exit(3);
 	}
-	fptt=fopen("temp.txt", "r");
+	fptt=fopen("memorycard/temp.txt", "r");
 	if(fptt==NULL)
 	{
 		printf(" File does not exists or error in opening..!!");
@@ -129,7 +129,7 @@ int powInt(int x, int y)
 }
 
 int savedataControl(Tamagotchi* t, char* mode){
- char *fileName = "data.txt";
+ char *fileName = "memorycard/data.txt";
  char *normal = "n";
  char *save = "s";
      if(!access(fileName, F_OK) && mode == normal){

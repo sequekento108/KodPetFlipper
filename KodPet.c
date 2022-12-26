@@ -11,8 +11,8 @@
 #include <unistd.h>
 #include <string.h>
 #include "kodpet.h"
-#include "savedata.h"
-#include "savedata.c"
+#include "system/savedata.h"
+#include "system/savedata.c"
 
 //Flipper
 
