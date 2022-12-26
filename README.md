@@ -17,16 +17,17 @@
 - Action: Work
 - Action: Investigate
 - Action: Train
-- Action: Play --Empty
+- Action: Play --Games in firmware --AutoGame
+- Action: Tool --App/Plugin in firmware
 - Action: Random Cycle
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty
 - Personality: White, Red, Black, Green, Grey
-- Logic: Cycle Live
+- Logic: Cycle Live combine with EXP-Flipper
 - Logic: Hunger
 - Logic: Happiness
 - Logic: Care
 - Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber, Quantum
-- System: Save games to prevent loss of progress with updates or others
+- System: Autosave games to prevent loss of progress with updates or others
 - System: Encryption of the savedata to avoid easy cheats
 - Statictics: Intelligence, strength, agility, critic, defend, life
 - System: Level

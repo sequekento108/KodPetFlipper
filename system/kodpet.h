@@ -46,6 +46,7 @@
 #define WORK 6
 #define INVESTIGATE 7
 #define TRAIN 8
+#define TOOL 9
 
 // Tamagotchi struct
 typedef struct {

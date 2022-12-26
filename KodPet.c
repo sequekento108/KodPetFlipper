@@ -33,7 +33,7 @@ Tamagotchi *createTamagotchi() {
   t->intelligence = 1;
   t->strength = 1;
   t->agility = 1;
-  t->critic = 0;
+  t->critic = 1;
   t->defend = 1;
   t->life = 100;
   if (savedataControl(t, "n"))
@@ -105,6 +105,13 @@ void doAction(Tamagotchi *t, int action) {
     t->happiness++;
     printf("########  LAST ACTION: TRAIN\n");
     break;
+  case TOOL:
+    t->hunger--;
+    t->happiness+= 8;
+    t->life++;
+    t->care--;
+    printf("########  LAST ACTION: TRAIN\n");
+    break;
   }
 
   if (t->status == DIRTY) {
@@ -144,10 +151,12 @@ void updateStatus(Tamagotchi *t) {
     t->cycle = 0;
     t->level++;
     t->life = 100;
+    printf("########  LEVEL UP!!!\n");
   }
 
   if (t->evolution == QUANTUM) {
     t->level++;
+    printf("########  LEVEL UP!!!\n");
     t->life = 100;
   }
 }
@@ -195,12 +204,12 @@ void printStatus(Tamagotchi *t) {
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
   printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. Random Cycle Time \n 99. Close test \n");
+         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. TOOL \n 98. Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int action = rand() % 3;
   switch (selectionoptionuser) {
-  case 9:
+  case 98:
     doAction(t, action);
     break;
   case 99:
