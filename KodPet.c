@@ -14,6 +14,12 @@
 #include "savedata.h"
 #include "savedata.c"
 
+//Flipper
+
+//#include <furi.h>
+//#include <gui/gui.h>
+//#include <input/input.h>
+
 
 // Initialize a new Tamagotchi with default values
 Tamagotchi* createTamagotchi() {
@@ -42,6 +48,7 @@ void doAction(Tamagotchi* t, int action) {
   switch (action) {
     case FEED:
       t->hunger += 13;
+      t->life++;
       if (t->hunger > 100) {
         t->hunger = 100;
       }
@@ -51,6 +58,8 @@ void doAction(Tamagotchi* t, int action) {
     case MEDICINE:
       if (t->status == SICK) {
         t->status = HAPPY;
+        t->hunger = 30;
+        t->happiness = 30;
       }
       printf("########  LAST ACTION: MEDICINE\n");
       break;
