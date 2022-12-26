@@ -19,8 +19,8 @@
 Tamagotchi* createTamagotchi() {
   Tamagotchi* t = malloc(sizeof(Tamagotchi));
   t->status = HUNGRY;
-  t->hunger = 100;
-  t->happiness = 100;
+  t->hunger = 50;
+  t->happiness = 50;
   t->cycle = 0;
   t->care = 10;
   t->evolution = EGG;
@@ -30,6 +30,7 @@ Tamagotchi* createTamagotchi() {
   t->agility = 1;
   t->critic = 0;
   t->defend = 1;
+  t->life = 100;
       if(savedataControl(t, "n"))
        return t;
   return t;
@@ -74,6 +75,7 @@ void doAction(Tamagotchi* t, int action) {
 
   if(t->status == DIRTY){
     t->happiness--;
+    t->life--;
   }
   
 }
@@ -81,6 +83,11 @@ void doAction(Tamagotchi* t, int action) {
 // Update the Tamagotchi's status based on its current values
 void updateStatus(Tamagotchi* t) {
   if (t->hunger <= DEAD_HUNGER || t->happiness <= DEAD_HAPPINESS) {
+    if(t->life >= 1){
+      t->life -= DAMAGE_FOR_CARE;
+      if(t->life >=1)
+       return;
+    }
     t->status = DEAD;
     return;
   } else if (t->hunger < 20 || t->happiness < 20) {
@@ -96,16 +103,20 @@ void updateStatus(Tamagotchi* t) {
   }
 
   if(t->care <= 0){
-    t->status = DIRTY;   
+    t->status = DIRTY;
+    t->life--;   
   }
   
   if(t->cycle >= CYCLE_EVOLUTION && t->evolution != QUANTUM){
     t->evolution++;
     t->cycle = 0;
     t->level++;
+    t->life = 100;
   }
+
   if (t->evolution == QUANTUM) {
      t->level++;
+     t->life = 100;
   }
 
 }
@@ -151,8 +162,9 @@ void printStatus(Tamagotchi* t) {
     printf("Agility: %i\n", t->agility);
     printf("Critic: %i\n", t->critic);
     printf("Defend: %i\n", t->defend);
-  printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n");
-  scanf("%d",&selectionoptionuser);
+    printf("Life: %i\n", t->life);
+    printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n 4. CARE \n 9. Random Cycle Time \n");
+    scanf("%d",&selectionoptionuser);
 
   if(selectionoptionuser == 9){
       int action = rand() % 3;

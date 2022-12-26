@@ -34,6 +34,7 @@
 #define DEAD_HUNGER -10
 #define DEAD_HAPPINESS -30
 #define CYCLE_EVOLUTION 10
+#define DAMAGE_FOR_CARE 35
 
 // Tamagotchi actions
 #define FEED 0
@@ -56,6 +57,7 @@ typedef struct {
   int agility; //10
   int critic; //11
   int defend; //12
+  int life; //13
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values
