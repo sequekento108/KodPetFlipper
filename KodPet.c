@@ -46,8 +46,8 @@ void doAction(Tamagotchi *t, int action) {
   switch (action) {
   case FEED:
     t->hunger += 13;
-    if(t->life <= 99)
-     t->life++;
+    if (t->life <= 99)
+      t->life++;
     if (t->hunger > 100) {
       t->hunger = 100;
     }
@@ -79,6 +79,10 @@ void doAction(Tamagotchi *t, int action) {
     }
     printf("########  LAST ACTION: CARE\n");
     break;
+  case STUDY:
+    t->intelligence++;
+    printf("########  LAST ACTION: STUDY\n");
+    break;
   }
 
   if (t->status == DIRTY) {
@@ -92,6 +96,7 @@ void updateStatus(Tamagotchi *t) {
   if (t->hunger <= DEAD_HUNGER || t->happiness <= DEAD_HAPPINESS) {
     if (t->life >= 1) {
       t->life -= DAMAGE_FOR_CARE;
+      t->strength--;     
       if (t->life >= 1)
         return;
     }
@@ -168,7 +173,7 @@ void printStatus(Tamagotchi *t) {
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
   printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-         "4. CARE \n 9. Random Cycle Time \n 99. Close test \n");
+         "4. CARE \n 5. STUDY \n 9. Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int action = rand() % 3;

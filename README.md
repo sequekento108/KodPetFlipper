@@ -13,6 +13,7 @@
 - Action: Feed
 - Action: Medicine
 - Action: Clean/Care
+- Action: Study
 - Action: Play --Empty
 - Action: Random Cycle
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty

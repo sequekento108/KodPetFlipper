@@ -1,3 +1,11 @@
+#include "./kodpet.h"
+#include "savedata.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+
 void dataopen() {
   char ch, *fname;
   FILE *fpts, *fptt;
