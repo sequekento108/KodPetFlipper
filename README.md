@@ -17,8 +17,8 @@
 - Action: Work
 - Action: Investigate
 - Action: Train
-- Action: Play --Games in firmware --AutoGame
-- Action: Tool --App/Plugin in firmware
+- Action: Play --Games in firmware or --AutoGame
+- Action: Tool --App/Plugin in firmware or --AutoTool
 - Action: Random Cycle
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty
 - Personality: White, Red, Black, Green, Grey
@@ -31,6 +31,7 @@
 - System: Encryption of the savedata to avoid easy cheats
 - Statictics: Intelligence, strength, agility, critic, defend, life
 - System: Level
+- Name: Gets the name of the system
 
 # Target system
 

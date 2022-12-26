@@ -130,10 +130,10 @@ int savedataControl(Tamagotchi *t, char *mode) {
     printf("----read and parse data progress----\n");
     file_pointer = fopen(fileName, "r"); // reset the pointer
     char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10], str7[10],
-        str8[10], str9[10], str10[10], str11[10], str12[10], str13[10];
-    fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s", str1, str2,
+        str8[10], str9[10], str10[10], str11[10], str12[10], str13[10], str14[10];
+    fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s", str1, str2,
            str3, str4, str5, str6, str7, str8, str9, str10, str11, str12,
-           str13);
+           str13, str14);
     printf("Read Data |%s|\n", str1);
     printf("Read Data |%s|\n", str2);
     printf("Read Data |%s|\n", str3);
@@ -147,6 +147,7 @@ int savedataControl(Tamagotchi *t, char *mode) {
     printf("Read Data |%s|\n", str11);
     printf("Read Data |%s|\n", str12);
     printf("Read Data |%s|\n", str13);
+    printf("Read Data |%s|\n", str14);
 
     printf("----read the entire file progress----\n");
 
@@ -167,6 +168,7 @@ int savedataControl(Tamagotchi *t, char *mode) {
     t->critic = parseInt(str11);
     t->defend = parseInt(str12);
     t->life = parseInt(str13);
+    t->name = str14;
 
     fclose(file_pointer);
     dataclose();
@@ -182,10 +184,10 @@ int savedataControl(Tamagotchi *t, char *mode) {
     FILE *fptr;
     char fn[64];
     char str[64];
-    snprintf(str, sizeof(str), "%i %i %i %i %i %i %i %i %i %i %i %i %i",
+    snprintf(str, sizeof(str), "%i %i %i %i %i %i %i %i %i %i %i %i %i %s",
              t->status, t->hunger, t->happiness, t->cycle, t->care,
              t->evolution, t->level, t->intelligence, t->strength, t->agility,
-             t->critic, t->defend, t->life);
+             t->critic, t->defend, t->life, t->name);
     fptr = fopen(fileName, "w"); // "w" defines "writing mode"
     for (i = 0; str[i]; i++) {
       /* write to file using fputc() function */

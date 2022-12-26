@@ -63,6 +63,7 @@ typedef struct {
   int critic; //11
   int defend; //12
   int life; //13
+  char *name; //14
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values

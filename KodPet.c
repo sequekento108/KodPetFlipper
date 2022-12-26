@@ -36,6 +36,7 @@ Tamagotchi *createTamagotchi() {
   t->critic = 1;
   t->defend = 1;
   t->life = 100;
+  t->name = "KodPet";
   if (savedataControl(t, "n"))
     return t;
   return t;
@@ -165,7 +166,7 @@ void updateStatus(Tamagotchi *t) {
 void printStatus(Tamagotchi *t) {
   int selectionoptionuser = 0;
 
-  printf("########\n");
+  printf("########   %s\n", t->name);
   printf("Hunger: %d\n", t->hunger);
   printf("Happiness: %d\n", t->happiness);
   switch (t->status) {
