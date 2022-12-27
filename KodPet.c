@@ -8,6 +8,8 @@
 #include "system/kodpet.h"
 #include "system/savedata.c"
 #include "system/savedata.h"
+#include "system/social.h"
+#include "system/social.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,6 +39,7 @@ Tamagotchi *createTamagotchi() {
   t->defend = 1;
   t->life = 100;
   t->name = "KodPet";
+  readsocial();
   if (savedataControl(t, "n"))
     return t;
   return t;
@@ -223,6 +226,8 @@ void printStatus(Tamagotchi *t) {
 
   printf("########   Selected: %i\n", selectionoptionuser);
 }
+
+
 
 int main() {
   srand(time(NULL));
