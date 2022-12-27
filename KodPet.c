@@ -119,13 +119,22 @@ void doAction(Tamagotchi *t, int action) {
     t->hunger -= 30;
     t->happiness += 8;
     t->care--;
-    printf("########  LAST ACTION: EXPEDITION\n");
-
-    //only test
-    int test = 0;
-    scanf("%i", &test);
-    //
-
+    printf("########  LAST ACTION: EXPEDITION: ");
+    int actionexpedition = rand() % 3;
+    switch (actionexpedition)
+    {
+    case FRIEND:
+      printf("and you found friend ");
+      break;
+    case ENEMY:
+      printf("and you found enemy ");
+      break;
+    case NPC:
+      printf("and you found npc X with the personality Y  ");
+      break;
+    default:
+      break;
+    }
     break;
   }
 
@@ -162,7 +171,7 @@ void updateStatus(Tamagotchi *t) {
   }
 
   if (t->cycle >= ((CYCLE_EVOLUTION * (1 + t->evolution)) + t->level)) {
-    if(t->evolution < 5)
+    if(t->evolution < QUANTUM)
      t->evolution++;
     t->cycle = 0;
     t->level++;
@@ -219,10 +228,10 @@ void printStatus(Tamagotchi *t) {
          "TOOL \n 10. EXPEDITION \n 98. Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
-  int action = rand() % 3;
+  int actionrandom = rand() % 10;
   switch (selectionoptionuser) {
   case 98:
-    doAction(t, action);
+    doAction(t, actionrandom);
     break;
   case 99:
     exit(0);

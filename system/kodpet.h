@@ -54,6 +54,11 @@
 #define TOOL 9
 #define EXPEDITION 10
 
+//Expedition
+#define FRIEND 0
+#define ENEMY 1
+#define NPC 2
+
 // Tamagotchi struct
 typedef struct {
   int status; //1
