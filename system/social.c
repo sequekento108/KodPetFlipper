@@ -2,33 +2,28 @@
 #include <stdio.h>
 #include <string.h>
 
-void readsocial() {
+void readsocial(char *npc) {
+  if (npc == NULL) {
+    readfolder("enemies");
+    readfolder("friends");
+    readfolder("npc");
+  }
+}
+
+void readfolder(char* npc) {
   DIR *folder;
   struct dirent *entry;
   int files = 0;
-
-  folder = opendir("friends");
+  folder = opendir(npc);
   if (folder == NULL) {
     perror("Unable to read directory");
   }
 
   while ((entry = readdir(folder))) {
     files++;
-    if(!strstr(entry->d_name, "."))
-      printf("Friends %3d: %s\n", files, entry->d_name);
-  }
-
-  closedir(folder);
-
-    folder = opendir("enemies");
-  if (folder == NULL) {
-    perror("Unable to read directory");
-  }
-
-  while ((entry = readdir(folder))) {
-    files++;
-    if(!strstr(entry->d_name, "."))
-      printf("Enemies %3d: %s\n", files, entry->d_name);
+    if (!strstr(entry->d_name, ".")){
+      printf("%s %3d: %s\n", npc, files, entry->d_name);
+    }
   }
 
   closedir(folder);

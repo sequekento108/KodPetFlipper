@@ -26,6 +26,11 @@
 #define GREEN 3
 #define GREY 4
 
+//PERSONALITY NPC
+#define GOOD 0
+#define BAD 1
+#define NEUTRO 2
+
 
 //Config Game
 #define CYCLE_HUNTER 5

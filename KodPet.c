@@ -39,7 +39,7 @@ Tamagotchi *createTamagotchi() {
   t->defend = 1;
   t->life = 100;
   t->name = "KodPet";
-  readsocial();
+  readsocial(NULL);
   if (savedataControl(t, "n"))
     return t;
   return t;

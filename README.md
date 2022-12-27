@@ -10,29 +10,30 @@
 
 # Functions Performed
 
-- Action: Feed
-- Action: Medicine
-- Action: Clean/Care
-- Action: Study
-- Action: Work
-- Action: Investigate
-- Action: Train
-- Action: Play --Games in firmware or --AutoGame
-- Action: Tool --App/Plugin in firmware or --AutoTool
-- Action: Random Cycle
-- Status: Hungry, Sick, Dead, Happy, Powered, God, Normal, Dirty
-- Personality: White, Red, Black, Green, Grey
-- Logic: Cycle Live combine with EXP-Flipper
-- Logic: Hunger
-- Logic: Happiness
-- Logic: Care
-- Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber, Quantum
-- System: Autosave game to prevent loss of progress with updates or others
-- System: Encryption of the savedata to avoid easy cheats
-- Statictics: Intelligence, strength, agility, critic, defend, life
-- System: Level
+- Action: Feed.
+- Action: Medicine.
+- Action: Clean/Care.
+- Action: Study.
+- Action: Work.
+- Action: Investigate.
+- Action: Train.
+- Action: Play --Games in firmware or --AutoGame.
+- Action: Tool --App/Plugin in firmware or --AutoTool.
+- Action: Random Cycle.
+- Status: Hungry, Sick, Dead, Happy, Powered, God, Normal and  Dirty.
+- Personality: White, Red, Black, Green and  Grey.
+- Logic: Cycle Live combine with EXP-Flipper.
+- Logic: Hunger.
+- Logic: Happiness.
+- Logic: Care.
+- Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber and Quantum.
+- System: Autosave game to prevent loss of progress with updates or others.
+- System: Encryption of the savedata to avoid easy cheats.
+- Statictics: Intelligence, strength, agility, critic, defend and life.
+- System: Level.
 - Name: Gets the name of the system.
-- System: Shared memorycard for add in friend or enemies. You might find some curious pets on the internet. You catalogue.
+- System: Social. Shared memorycard (this include the author's name in the savedata) for add in friends or enemies. You might find some curious pets on the internet. You catalogue.
+- System: NPC good, bad and neutro. Add more from the internet.
 
 # Target system
 
