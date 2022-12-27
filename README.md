@@ -27,11 +27,12 @@
 - Logic: Happiness
 - Logic: Care
 - Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber, Quantum
-- System: Autosave games to prevent loss of progress with updates or others
+- System: Autosave game to prevent loss of progress with updates or others
 - System: Encryption of the savedata to avoid easy cheats
 - Statictics: Intelligence, strength, agility, critic, defend, life
 - System: Level
-- Name: Gets the name of the system
+- Name: Gets the name of the system.
+- System: Shared memorycard for add in friend or enemies. You might find some curious pets on the internet. You catalogue.
 
 # Target system
 
