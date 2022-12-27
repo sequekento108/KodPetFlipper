@@ -8,8 +8,8 @@
 #include "system/kodpet.h"
 #include "system/savedata.c"
 #include "system/savedata.h"
-#include "system/social.h"
 #include "system/social.c"
+#include "system/social.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -111,10 +111,16 @@ void doAction(Tamagotchi *t, int action) {
     break;
   case TOOL:
     t->hunger--;
-    t->happiness+= 8;
+    t->happiness += 8;
     t->life++;
     t->care--;
     printf("########  LAST ACTION: TRAIN\n");
+    break;
+  case EXPEDITION:
+    t->hunger -= 30;
+    t->happiness += 8;
+    t->care--;
+    printf("########  LAST ACTION: EXPEDITION\n");
     break;
   }
 
@@ -208,7 +214,8 @@ void printStatus(Tamagotchi *t) {
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
   printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. TOOL \n 98. Random Cycle Time \n 99. Close test \n");
+         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
+         "TOOL \n 10. EXPEDITION \n 98. Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int action = rand() % 3;
@@ -226,8 +233,6 @@ void printStatus(Tamagotchi *t) {
 
   printf("########   Selected: %i\n", selectionoptionuser);
 }
-
-
 
 int main() {
   srand(time(NULL));

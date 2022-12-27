@@ -21,15 +21,22 @@ void readfolder(char *npc, int point) {
 
   while ((entry = readdir(folder))) {
     files++;
-    if (point == 0)
+    switch (point) {
+      // friend enemies
+    case 0:
       if (!strstr(entry->d_name, ".")) {
         printf("%s %3d: %s\n", npc, files, entry->d_name);
       }
-    // npc
-    if (point == 1)
+      break;
+      // npc
+    case 1:
       if (endswithfoonpc(entry->d_name) == 0) {
         printf("%s %3d: %s\n", npc, files, entry->d_name);
       }
+      break;
+    default:
+      break;
+    }
   }
 
   closedir(folder);

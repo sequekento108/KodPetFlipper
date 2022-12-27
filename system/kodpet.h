@@ -52,6 +52,7 @@
 #define INVESTIGATE 7
 #define TRAIN 8
 #define TOOL 9
+#define EXPEDITION 10
 
 // Tamagotchi struct
 typedef struct {
