@@ -63,7 +63,6 @@ void doAction(Tamagotchi *t, int action) {
   case MEDICINE:
     if (t->status == SICK) {
       t->status = HAPPY;
-      t->hunger = 30;
       t->happiness = 30;
     }
     printf("########  LAST ACTION: MEDICINE\n");
@@ -121,6 +120,12 @@ void doAction(Tamagotchi *t, int action) {
     t->happiness += 8;
     t->care--;
     printf("########  LAST ACTION: EXPEDITION\n");
+
+    //only test
+    int test = 0;
+    scanf("%i", &test);
+    //
+
     break;
   }
 
@@ -156,19 +161,15 @@ void updateStatus(Tamagotchi *t) {
     t->life--;
   }
 
-  if (t->cycle >= CYCLE_EVOLUTION && t->evolution != QUANTUM) {
-    t->evolution++;
+  if (t->cycle >= ((CYCLE_EVOLUTION * (1 + t->evolution)) + t->level)) {
+    if(t->evolution < 5)
+     t->evolution++;
     t->cycle = 0;
     t->level++;
     t->life = 100;
     printf("########  LEVEL UP!!!\n");
   }
 
-  if (t->evolution == QUANTUM) {
-    t->level++;
-    printf("########  LEVEL UP!!!\n");
-    t->life = 100;
-  }
 }
 
 // Print the current status of the Tamagotchi

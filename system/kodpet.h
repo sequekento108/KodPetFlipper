@@ -38,7 +38,7 @@
 #define HAPPY_FOR_CARE 5
 #define DEAD_HUNGER -10
 #define DEAD_HAPPINESS -30
-#define CYCLE_EVOLUTION 10
+#define CYCLE_EVOLUTION 25
 #define DAMAGE_FOR_CARE 35
 
 // Tamagotchi actions

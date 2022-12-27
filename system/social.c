@@ -1,6 +1,7 @@
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
+#include "social.h"
 
 void readsocial(char *npc) {
   if (npc == NULL) {
