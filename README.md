@@ -1,6 +1,6 @@
 # Welcome to KodPetFlipper
 
- Under construction...
+ Under construction...****you will not find progress/support on this project by donating on patreon or others.
 
         Game prototype and interface for flipper zero. Based on tamagotchi.
 
