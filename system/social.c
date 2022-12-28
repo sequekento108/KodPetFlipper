@@ -1,17 +1,9 @@
+#include "social.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
-#include "social.h"
 
-void readsocial(char *npc) {
-  if (npc == NULL) {
-    readfolder("enemies", 0);
-    readfolder("friends", 0);
-    readfolder("npc", 1);
-  }
-}
-
-void readfolder(char *npc, int point) {
+char *readfolderselector(char *npc, int point, int select) {
   DIR *folder;
   struct dirent *entry;
   int files = 0;
@@ -21,17 +13,54 @@ void readfolder(char *npc, int point) {
   }
 
   while ((entry = readdir(folder))) {
-    files++;
     switch (point) {
       // friend enemies
     case 0:
       if (!strstr(entry->d_name, ".")) {
+        files++;
+        if(files == select)
+         return entry->d_name;
+      }
+      break;
+      // npc
+    case 1:
+      if (endswithfoonpc(entry->d_name) == 0) {
+        files++;
+        if(files == select)
+         return entry->d_name;
+      }
+      break;
+    default:
+      break;
+    }
+  }
+
+  closedir(folder);
+  return NULL;
+}
+
+int readfolder(char *npc, int point) {
+  DIR *folder;
+  struct dirent *entry;
+  int files = 0;
+  folder = opendir(npc);
+  if (folder == NULL) {
+    perror("Unable to read directory");
+  }
+
+  while ((entry = readdir(folder))) {
+    switch (point) {
+      // friend enemies
+    case 0:
+      if (!strstr(entry->d_name, ".")) {
+        files++;
         printf("%s %3d: %s\n", npc, files, entry->d_name);
       }
       break;
       // npc
     case 1:
       if (endswithfoonpc(entry->d_name) == 0) {
+        files++;
         printf("%s %3d: %s\n", npc, files, entry->d_name);
       }
       break;
@@ -41,6 +70,7 @@ void readfolder(char *npc, int point) {
   }
 
   closedir(folder);
+  return files;
 }
 
 int endswithfoonpc(char *string) {

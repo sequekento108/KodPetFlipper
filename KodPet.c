@@ -39,7 +39,7 @@ Tamagotchi *createTamagotchi() {
   t->defend = 1;
   t->life = 100;
   t->name = "KodPet";
-  readsocial(NULL);
+  readsocial(t);
   if (savedataControl(t, "n"))
     return t;
   return t;
@@ -121,16 +121,15 @@ void doAction(Tamagotchi *t, int action) {
     t->care--;
     printf("########  LAST ACTION: EXPEDITION: ");
     int actionexpedition = rand() % 3;
-    switch (actionexpedition)
-    {
+    switch (actionexpedition) {
     case FRIEND:
-      printf("and you found friend ");
+      printf("and you found friend %s \n", readfolderselector("friends", 0, rand() % t->friends + 1));
       break;
     case ENEMY:
-      printf("and you found enemy ");
+      printf("and you found enemy %s \n", readfolderselector("enemies", 0, rand() % t->enemies + 1));
       break;
     case NPC:
-      printf("and you found npc X with the personality Y  ");
+      printf("and you found npc X with the personality Y  %s \n", readfolderselector("npc", 1, rand() % t->npcs + 1));
       break;
     default:
       break;
@@ -171,20 +170,21 @@ void updateStatus(Tamagotchi *t) {
   }
 
   if (t->cycle >= ((CYCLE_EVOLUTION * (1 + t->evolution)) + t->level)) {
-    if(t->evolution < QUANTUM)
-     t->evolution++;
+    if (t->evolution < QUANTUM)
+      t->evolution++;
     t->cycle = 0;
     t->level++;
     t->life = 100;
     printf("########  LEVEL UP!!!\n");
   }
-
 }
 
 // Print the current status of the Tamagotchi
 void printStatus(Tamagotchi *t) {
   int selectionoptionuser = 0;
-
+  printf("Friends: %i\n", t->friends);
+  printf("Enemies: %i\n", t->enemies);
+  printf("NPC: %i\n", t->npcs);
   printf("########   %s\n", t->name);
   printf("Hunger: %d\n", t->hunger);
   printf("Happiness: %d\n", t->happiness);
@@ -223,9 +223,10 @@ void printStatus(Tamagotchi *t) {
   printf("Critic: %i\n", t->critic);
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
-  printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
-         "TOOL \n 10. EXPEDITION \n 98. Random Cycle Time \n 99. Close test \n");
+  printf(
+      "\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
+      "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
+      "TOOL \n 10. EXPEDITION \n 98. Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int actionrandom = rand() % 10;
@@ -272,4 +273,10 @@ int main() {
   printf("Game over!\n");
 
   return 0;
+}
+
+void readsocial(Tamagotchi *t) {
+  t->enemies = readfolder("enemies", 0);
+  t->friends = readfolder("friends", 0);
+  t->npcs = readfolder("npc", 1);
 }

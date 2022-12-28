@@ -1,3 +1,4 @@
-void readsocial(char *npc);
-void readfolder(char* npc, int point);
+
+int readfolder(char* npc, int point);
+char* readfolderselector(char* npc, int point, int select);
 int endswithfoonpc(char *string);

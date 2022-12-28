@@ -75,6 +75,9 @@ typedef struct {
   int defend; //12
   int life; //13
   char *name; //14
+  int friends; 
+  int enemies;
+  int npcs;
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values
@@ -89,6 +92,7 @@ void updateStatus(Tamagotchi* t);
 // Print the current status of the Tamagotchi
 void printStatus(Tamagotchi* t);
 
+void readsocial(Tamagotchi* t);
 
 
 #endif
