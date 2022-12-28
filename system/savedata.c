@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 void dataopen(char *selector) {
-  char ch, *fname;
+  char ch, *fname, social[100], socialt[100];
   FILE *fpts, *fptt;
 
   printf("\n\n Decrypt a text file :\n");
@@ -16,7 +16,9 @@ void dataopen(char *selector) {
   if (selector == NULL) {
     fname = "memorycard/data.txt";
   } else {
-    fname = strcat(selector, "/data.txt");
+    strcat(social, selector);
+    fname = social;
+    strcat(fname, "/data.txt");
   }
 
   fpts = fopen(fname, "w");
@@ -28,7 +30,9 @@ void dataopen(char *selector) {
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
-    fptt = fopen(strcat(selector, "/temp.txt"), "r");
+    strcat(socialt, social);
+    strcat(socialt, "/temp.txt");
+    fptt = fopen(socialt, "r");
   }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!!");
@@ -49,7 +53,7 @@ void dataopen(char *selector) {
   fclose(fptt);
 }
 void dataclose(char *selector) {
-  char *fname, ch;
+  char *fname, ch, social[100], socialt[100];
   FILE *fpts, *fptt;
 
   printf("\n\n Encrypt a text file :\n");
@@ -58,7 +62,9 @@ void dataclose(char *selector) {
   if (selector == NULL) {
     fname = "memorycard/data.txt";
   } else {
-    fname = strcat(selector, "/data.txt");
+    strcat(social, selector);
+    fname = social;
+    strcat(fname, "/data.txt");
   }
 
   fpts = fopen(fname, "r");
@@ -69,7 +75,9 @@ void dataclose(char *selector) {
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "w");
   } else {
-    fptt = fopen(strcat(selector, "/temp.txt"), "w");
+    strcat(socialt, social);
+    strcat(socialt, "/temp.txt");
+    fptt = fopen(socialt, "w");
   }
   if (fptt == NULL) {
     printf(" Error in creation of file temp.txt ..!!");
@@ -95,7 +103,9 @@ void dataclose(char *selector) {
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
-    fptt = fopen(strcat(selector, "/temp.txt"), "r");
+    // strcat(socialt, social);
+    // strcat(socialt, "/temp.txt");
+    fptt = fopen(socialt, "r");
   }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!!");
@@ -133,13 +143,15 @@ int powInt(int x, int y) {
 }
 
 int savedataControl(Tamagotchi *t, char *mode, char *selector) {
-  char *fileName;
+  char *fileName, social[100], socialt[100];
   if (selector == NULL) {
     fileName = "memorycard/data.txt";
 
   } else {
-    fileName = strcat(selector, "/data.txt");
-
+    strcat(social, selector);
+    fileName = social;
+    strcat(fileName, "/data.txt");
+    // printf("buggg---------%s", fileName);
   }
 
   char *normal = "n";
@@ -223,7 +235,7 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
       fputc(str[i], fptr);
     }
     fclose(fptr);
-    dataclose(selector);
+    dataclose(NULL);
     return 0;
   }
 
