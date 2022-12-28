@@ -51,7 +51,7 @@ Tamagotchi *createTamagotchi() {
 void doAction(Tamagotchi *t, int action) {
   int probcritic = rand() % 10;
   int probcritictmp = rand() % 10;
-  char *selector;
+  char* selector;
   switch (action) {
   case FEED:
     t->hunger += 13;
@@ -131,8 +131,10 @@ void doAction(Tamagotchi *t, int action) {
     case ENEMY:
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
       printf("and you found enemy %s \n", selector);
-      Tamagotchi *enemyt = malloc(sizeof(Tamagotchi));
-      savedataControl(enemyt, "n", strcat("enemies/",selector));
+      Tamagotchi *enemyt;
+      if(savedataControl(enemyt, "n", strcat("enemies/",selector)) == 0){
+        printf("nices data enemny load \n");
+      }
       break;
     case NPC:
       printf("and you found npc X with the personality Y  %s \n", readfolderselector("npc", 1, rand() % t->npcs + 1));

@@ -16,7 +16,7 @@ void dataopen(char *selector) {
   if (selector == NULL) {
     fname = "memorycard/data.txt";
   } else {
-    fname = strcat(selector,"/data.txt");
+    fname = strcat(selector, "/data.txt");
   }
 
   fpts = fopen(fname, "w");
@@ -26,9 +26,9 @@ void dataopen(char *selector) {
   }
 
   if (selector == NULL) {
-      fptt = fopen("memorycard/temp.txt", "r");
+    fptt = fopen("memorycard/temp.txt", "r");
   } else {
-      fptt = fopen(strcat(selector,"/temp.txt"), "r");
+    fptt = fopen(strcat(selector, "/temp.txt"), "r");
   }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!!");
@@ -55,10 +55,10 @@ void dataclose(char *selector) {
   printf("\n\n Encrypt a text file :\n");
   printf("--------------------------\n");
 
-    if (selector == NULL) {
+  if (selector == NULL) {
     fname = "memorycard/data.txt";
   } else {
-    fname = strcat(selector,"/data.txt");
+    fname = strcat(selector, "/data.txt");
   }
 
   fpts = fopen(fname, "r");
@@ -66,10 +66,10 @@ void dataclose(char *selector) {
     printf(" File does not exists or error in opening..!!");
     exit(1);
   }
-    if (selector == NULL) {
-      fptt = fopen("memorycard/temp.txt", "w");
+  if (selector == NULL) {
+    fptt = fopen("memorycard/temp.txt", "w");
   } else {
-      fptt = fopen(strcat(selector,"/temp.txt"), "w");
+    fptt = fopen(strcat(selector, "/temp.txt"), "w");
   }
   if (fptt == NULL) {
     printf(" Error in creation of file temp.txt ..!!");
@@ -92,10 +92,10 @@ void dataclose(char *selector) {
     printf(" File does not exists or error in opening..!!");
     exit(3);
   }
-    if (selector == NULL) {
-      fptt = fopen("memorycard/temp.txt", "r");
+  if (selector == NULL) {
+    fptt = fopen("memorycard/temp.txt", "r");
   } else {
-      fptt = fopen(strcat(selector,"/temp.txt"), "r");
+    fptt = fopen(strcat(selector, "/temp.txt"), "r");
   }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!!");
@@ -136,14 +136,16 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
   char *fileName;
   if (selector == NULL) {
     fileName = "memorycard/data.txt";
+
   } else {
-    fileName = strcat(selector,"/data.txt");
+    fileName = strcat(selector, "/data.txt");
+
   }
 
   char *normal = "n";
   char *save = "s";
   if (!access(fileName, F_OK) && mode == normal) {
-    dataopen(NULL);
+    dataopen(selector);
     printf("The File %s\t was Found\n", fileName);
     FILE *file_pointer;
     char buffer[64], c;
@@ -198,7 +200,7 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     t->name = str14;
 
     fclose(file_pointer);
-    dataclose(NULL);
+    dataclose(selector);
     return 0;
   } else {
     if (mode != save) {
