@@ -1,7 +1,7 @@
-void dataopen();
-void dataclose();
+void dataopen(char* selector);
+void dataclose(char* selector);
 // System Save progress
-int savedataControl(Tamagotchi* t, char* mode);
+int savedataControl(Tamagotchi* t, char* mode, char* selector);
 
 int parseInt(char* chars);
 

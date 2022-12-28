@@ -1,26 +1,35 @@
-#include "./kodpet.h"
 #include "savedata.h"
+#include "./kodpet.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
 
-void dataopen() {
+void dataopen(char *selector) {
   char ch, *fname;
   FILE *fpts, *fptt;
 
   printf("\n\n Decrypt a text file :\n");
   printf("--------------------------\n");
 
-  fname = "memorycard/data.txt";
+  if (selector == NULL) {
+    fname = "memorycard/data.txt";
+  } else {
+    fname = strcat(selector,"/data.txt");
+  }
 
   fpts = fopen(fname, "w");
   if (fpts == NULL) {
     printf(" File does not exists or error in opening..!!");
     exit(7);
   }
-  fptt = fopen("memorycard/temp.txt", "r");
+
+  if (selector == NULL) {
+      fptt = fopen("memorycard/temp.txt", "r");
+  } else {
+      fptt = fopen(strcat(selector,"/temp.txt"), "r");
+  }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!!");
     fclose(fpts);
@@ -39,22 +48,29 @@ void dataopen() {
   fclose(fpts);
   fclose(fptt);
 }
-void dataclose() {
+void dataclose(char *selector) {
   char *fname, ch;
   FILE *fpts, *fptt;
 
   printf("\n\n Encrypt a text file :\n");
   printf("--------------------------\n");
 
-  // scanf("%s",fname);
-  fname = "memorycard/data.txt";
+    if (selector == NULL) {
+    fname = "memorycard/data.txt";
+  } else {
+    fname = strcat(selector,"/data.txt");
+  }
 
   fpts = fopen(fname, "r");
   if (fpts == NULL) {
     printf(" File does not exists or error in opening..!!");
     exit(1);
   }
-  fptt = fopen("memorycard/temp.txt", "w");
+    if (selector == NULL) {
+      fptt = fopen("memorycard/temp.txt", "w");
+  } else {
+      fptt = fopen(strcat(selector,"/temp.txt"), "w");
+  }
   if (fptt == NULL) {
     printf(" Error in creation of file temp.txt ..!!");
     fclose(fpts);
@@ -76,7 +92,11 @@ void dataclose() {
     printf(" File does not exists or error in opening..!!");
     exit(3);
   }
-  fptt = fopen("memorycard/temp.txt", "r");
+    if (selector == NULL) {
+      fptt = fopen("memorycard/temp.txt", "r");
+  } else {
+      fptt = fopen(strcat(selector,"/temp.txt"), "r");
+  }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!!");
     fclose(fpts);
@@ -112,12 +132,18 @@ int powInt(int x, int y) {
   return x;
 }
 
-int savedataControl(Tamagotchi *t, char *mode) {
-  char *fileName = "memorycard/data.txt";
+int savedataControl(Tamagotchi *t, char *mode, char *selector) {
+  char *fileName;
+  if (selector == NULL) {
+    fileName = "memorycard/data.txt";
+  } else {
+    fileName = strcat(selector,"/data.txt");
+  }
+
   char *normal = "n";
   char *save = "s";
   if (!access(fileName, F_OK) && mode == normal) {
-    dataopen();
+    dataopen(NULL);
     printf("The File %s\t was Found\n", fileName);
     FILE *file_pointer;
     char buffer[64], c;
@@ -130,9 +156,10 @@ int savedataControl(Tamagotchi *t, char *mode) {
     printf("----read and parse data progress----\n");
     file_pointer = fopen(fileName, "r"); // reset the pointer
     char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10], str7[10],
-        str8[10], str9[10], str10[10], str11[10], str12[10], str13[10], str14[10];
-    fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s", str1, str2,
-           str3, str4, str5, str6, str7, str8, str9, str10, str11, str12,
+        str8[10], str9[10], str10[10], str11[10], str12[10], str13[10],
+        str14[10];
+    fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s", str1,
+           str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12,
            str13, str14);
     printf("Read Data |%s|\n", str1);
     printf("Read Data |%s|\n", str2);
@@ -171,7 +198,7 @@ int savedataControl(Tamagotchi *t, char *mode) {
     t->name = str14;
 
     fclose(file_pointer);
-    dataclose();
+    dataclose(NULL);
     return 0;
   } else {
     if (mode != save) {
@@ -194,7 +221,7 @@ int savedataControl(Tamagotchi *t, char *mode) {
       fputc(str[i], fptr);
     }
     fclose(fptr);
-    dataclose();
+    dataclose(NULL);
     return 0;
   }
 

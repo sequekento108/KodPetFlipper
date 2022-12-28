@@ -34,7 +34,10 @@
 - Name: Gets the name of the system.
 - System: Social. Shared memorycard (this include the author's name in the savedata) for add in friends or enemies. You might find some curious pets on the internet. You catalogue.
 - System: NPC good, bad and neutro. Add more from the internet.
-- System: Expedition. You can meet (~random) an enemy, npc or friend. 
+- System: Expedition. You can found (~random) an enemy (active: system battle), npc (active: development) or friend (active: development). 
+
+
+   and more in development...
 
 # Target system
 

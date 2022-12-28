@@ -10,6 +10,8 @@
 #include "system/savedata.h"
 #include "system/social.c"
 #include "system/social.h"
+#include "system/battle.c"
+#include "system/battle.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,7 +42,7 @@ Tamagotchi *createTamagotchi() {
   t->life = 100;
   t->name = "KodPet";
   readsocial(t);
-  if (savedataControl(t, "n"))
+  if (savedataControl(t, "n", NULL))
     return t;
   return t;
 }
@@ -49,6 +51,7 @@ Tamagotchi *createTamagotchi() {
 void doAction(Tamagotchi *t, int action) {
   int probcritic = rand() % 10;
   int probcritictmp = rand() % 10;
+  char *selector;
   switch (action) {
   case FEED:
     t->hunger += 13;
@@ -116,7 +119,7 @@ void doAction(Tamagotchi *t, int action) {
     printf("########  LAST ACTION: TRAIN\n");
     break;
   case EXPEDITION:
-    t->hunger -= 30;
+   //t->hunger -= 30;
     t->happiness += 8;
     t->care--;
     printf("########  LAST ACTION: EXPEDITION: ");
@@ -126,7 +129,10 @@ void doAction(Tamagotchi *t, int action) {
       printf("and you found friend %s \n", readfolderselector("friends", 0, rand() % t->friends + 1));
       break;
     case ENEMY:
-      printf("and you found enemy %s \n", readfolderselector("enemies", 0, rand() % t->enemies + 1));
+      selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
+      printf("and you found enemy %s \n", selector);
+      Tamagotchi *enemyt = malloc(sizeof(Tamagotchi));
+      savedataControl(enemyt, "n", strcat("enemies/",selector));
       break;
     case NPC:
       printf("and you found npc X with the personality Y  %s \n", readfolderselector("npc", 1, rand() % t->npcs + 1));
@@ -265,7 +271,7 @@ int main() {
     printStatus(t);
     t->cycle++;
 
-    if (savedataControl(t, "s") == 0)
+    if (savedataControl(t, "s", NULL) == 0)
       printf("Saved progress");
   }
 
