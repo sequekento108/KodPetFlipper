@@ -132,7 +132,14 @@ void doAction(Tamagotchi *t, int action) {
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
       printf("and you found enemy %s \n", selector);
       Tamagotchi *enemyt;
-      if(savedataControl(enemyt, "n", strcat("enemies/",selector)) == 0){
+      char test[100] = "enemies/";
+ 
+      strcat(test, selector);
+      //strcat(test, selector);
+      //strcpy(test, selector);
+      
+      printf("\n testtt path: %s",test);
+      if(savedataControl(enemyt, "n", test)){
         printf("nices data enemny load \n");
       }
       break;

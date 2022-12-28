@@ -223,7 +223,7 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
       fputc(str[i], fptr);
     }
     fclose(fptr);
-    dataclose(NULL);
+    dataclose(selector);
     return 0;
   }
 
