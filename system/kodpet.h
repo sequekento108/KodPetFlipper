@@ -79,6 +79,7 @@ typedef struct {
   int friends; 
   int enemies;
   int npcs;
+  int money; //15
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values

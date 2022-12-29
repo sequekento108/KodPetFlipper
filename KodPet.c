@@ -41,6 +41,7 @@ Tamagotchi *createTamagotchi() {
   t->defend = 1;
   t->life = 100;
   t->name = "KodPet";
+  t->money = 0;
   readsocial(t);
   if (savedataControl(t, "n", NULL))
     return t;
@@ -54,6 +55,7 @@ void doAction(Tamagotchi *t, int action) {
   char *selector;
   switch (action) {
   case FEED:
+    t->money -= 3;
     t->hunger += 30;
     if (t->life <= 99)
       t->life++;
@@ -68,6 +70,7 @@ void doAction(Tamagotchi *t, int action) {
     if (t->status == SICK) {
       t->status = HAPPY;
       t->happiness = 13;
+      t->money -= 3;
     }
     printf("########  LAST ACTION: MEDICINE\n");
     break;
@@ -97,11 +100,13 @@ void doAction(Tamagotchi *t, int action) {
     t->strength++;
     t->hunger -= 30;
     t->happiness -= 10;
+    t->money += 5;
     printf("########  LAST ACTION: WORK\n");
     break;
   case INVESTIGATE:
     t->agility++;
     t->hunger -= 38;
+    t->money -= 10;
     printf("########  LAST ACTION: INVESTIGATE\n");
     break;
   case TRAIN:
@@ -144,6 +149,7 @@ void doAction(Tamagotchi *t, int action) {
           t->cycle += 3;
           t->life++;
           t->happiness += 50;
+          t->money += 20;
         } else {
           printf("You losed in BATTLE!! :( \n");
           t->cycle += 1;
@@ -171,10 +177,12 @@ void doAction(Tamagotchi *t, int action) {
         printf("You win in BATTLE!! ^^ \n");
         t->life++;
         t->happiness += 25;
+        t->money += 10;
       } else {
         printf("You losed in BATTLE!! :( \n");
         t->cycle += 1;
         t->happiness -= 6;
+        t->money -= 9;
       }
     }
     printf("########  LAST ACTION: DUEL FRIEND\n");
@@ -259,6 +267,7 @@ void printStatus(Tamagotchi *t) {
     break;
   }
   printf("Cycle: %i\n", t->cycle);
+  printf("Money: %i\n", t->money);
   printf("Evolution: %i\n", t->evolution);
   printf("Level: %i\n", t->level);
   printf("Intelligence: %i\n", t->intelligence);
