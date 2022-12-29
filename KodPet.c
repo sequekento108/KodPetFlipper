@@ -40,7 +40,7 @@ Tamagotchi *createTamagotchi() {
   t->critic = 1;
   t->defend = 1;
   t->life = 100;
-  t->name = "KodPet";
+  t->name = "BotBad";
   readsocial(t);
   if (savedataControl(t, "n", NULL))
     return t;
@@ -135,10 +135,8 @@ void doAction(Tamagotchi *t, int action) {
       char test[100] = "enemies/";
  
       strcat(test, selector);
-      //strcat(test, selector);
-      //strcpy(test, selector);
       
-      printf("\n testtt path: %s",test);
+
       if(savedataControl(enemyt, "n", test)){
         printf("nices data enemny load \n");
       }

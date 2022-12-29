@@ -23,19 +23,20 @@ void dataopen(char *selector) {
 
   fpts = fopen(fname, "w");
   if (fpts == NULL) {
-    printf(" File does not exists or error in opening..!!");
+    printf(" File does not exists or error in opening..!! 001");
     exit(7);
   }
 
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
-    strcat(socialt, social);
+    strcat(socialt, selector);
     strcat(socialt, "/temp.txt");
     fptt = fopen(socialt, "r");
   }
+
   if (fptt == NULL) {
-    printf(" File does not exists or error in opening..!!");
+    printf(" File does not exists or error in opening..!! 002");
     fclose(fpts);
     exit(9);
   }
@@ -69,13 +70,13 @@ void dataclose(char *selector) {
 
   fpts = fopen(fname, "r");
   if (fpts == NULL) {
-    printf(" File does not exists or error in opening..!!");
+    printf(" File does not exists or error in opening..!! 003");
     exit(1);
   }
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "w");
   } else {
-    strcat(socialt, social);
+    strcat(socialt, selector);
     strcat(socialt, "/temp.txt");
     fptt = fopen(socialt, "w");
   }
@@ -97,14 +98,14 @@ void dataclose(char *selector) {
   fclose(fptt);
   fpts = fopen(fname, "w");
   if (fpts == NULL) {
-    printf(" File does not exists or error in opening..!!");
+    printf(" File does not exists or error in opening..!! 004");
     exit(3);
   }
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
-    // strcat(socialt, social);
-    // strcat(socialt, "/temp.txt");
+    strcat(socialt, selector);
+    strcat(socialt, "/temp.txt");
     fptt = fopen(socialt, "r");
   }
   if (fptt == NULL) {
@@ -151,7 +152,6 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     strcat(social, selector);
     fileName = social;
     strcat(fileName, "/data.txt");
-    // printf("buggg---------%s", fileName);
   }
 
   char *normal = "n";
