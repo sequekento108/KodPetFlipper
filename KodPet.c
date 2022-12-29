@@ -132,13 +132,16 @@ void doAction(Tamagotchi *t, int action) {
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
       printf("and you found enemy %s \n", selector);
       Tamagotchi *enemyt = malloc(sizeof(Tamagotchi));
-      char test[100] = "enemies/";
- 
-      strcat(test, selector);
+      char pathenemies[100] = "enemies/";
+      strcat(pathenemies, selector);
       
-
-      if(savedataControl(enemyt, "n", test)){
+      if(savedataControl(enemyt, "n", pathenemies) == 0){
         printf("nices data enemny load \n");
+        if(whowinbattlegotchi(t, enemyt) == 0){
+            printf("You win in BATTLE!! ^^ \n");
+        }else{
+          printf("You losed in BATTLE!! :( \n");
+        }
       }
       break;
     case NPC:

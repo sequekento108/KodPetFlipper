@@ -104,8 +104,6 @@ void dataclose(char *selector) {
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
-    //strcat(socialt, selector);
-    //strcat(socialt, "/temp.txt");
     fptt = fopen(socialt, "r");
     printf("%s",socialt);
   }
@@ -176,20 +174,6 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s", str1,
            str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12,
            str13, str14);
-    printf("Read Data |%s|\n", str1);
-    printf("Read Data |%s|\n", str2);
-    printf("Read Data |%s|\n", str3);
-    printf("Read Data |%s|\n", str4);
-    printf("Read Data |%s|\n", str5);
-    printf("Read Data |%s|\n", str6);
-    printf("Read Data |%s|\n", str7);
-    printf("Read Data |%s|\n", str8);
-    printf("Read Data |%s|\n", str9);
-    printf("Read Data |%s|\n", str10);
-    printf("Read Data |%s|\n", str11);
-    printf("Read Data |%s|\n", str12);
-    printf("Read Data |%s|\n", str13);
-    printf("Read Data |%s|\n", str14);
 
     printf("----read the entire file progress----\n");
 
