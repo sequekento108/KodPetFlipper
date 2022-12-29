@@ -40,7 +40,7 @@ Tamagotchi *createTamagotchi() {
   t->critic = 1;
   t->defend = 1;
   t->life = 100;
-  t->name = "BotBad";
+  t->name = "KodPet";
   readsocial(t);
   if (savedataControl(t, "n", NULL))
     return t;
@@ -131,7 +131,7 @@ void doAction(Tamagotchi *t, int action) {
     case ENEMY:
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
       printf("and you found enemy %s \n", selector);
-      Tamagotchi *enemyt;
+      Tamagotchi *enemyt = malloc(sizeof(Tamagotchi));
       char test[100] = "enemies/";
  
       strcat(test, selector);

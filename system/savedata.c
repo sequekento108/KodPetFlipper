@@ -104,12 +104,13 @@ void dataclose(char *selector) {
   if (selector == NULL) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
-    strcat(socialt, selector);
-    strcat(socialt, "/temp.txt");
+    //strcat(socialt, selector);
+    //strcat(socialt, "/temp.txt");
     fptt = fopen(socialt, "r");
+    printf("%s",socialt);
   }
   if (fptt == NULL) {
-    printf(" File does not exists or error in opening..!!");
+    printf(" File does not exists or error in opening..!! 005");
     fclose(fpts);
     exit(4);
   }
