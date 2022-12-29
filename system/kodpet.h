@@ -40,6 +40,7 @@
 #define DEAD_HAPPINESS -30
 #define CYCLE_EVOLUTION 25
 #define DAMAGE_FOR_CARE 35
+#define TAXREVIVE 100
 
 // Tamagotchi actions
 #define FEED 0

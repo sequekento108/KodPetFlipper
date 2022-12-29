@@ -28,6 +28,7 @@
 - Logic: Happiness.
 - Logic: Care.
 - Logic: System of evolutions - Egg, Baby, Nano, Mature, Cyber and Quantum.
+- Logic: Hospital (If you die, you can pay hospital costs and get healthy again).
 - System: Autosave game to prevent loss of progress with updates or others.
 - System: Encryption of the savedata to avoid easy cheats.
 - Statictics: Intelligence, strength, agility, critic, defend and life.

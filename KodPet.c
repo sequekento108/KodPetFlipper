@@ -320,6 +320,15 @@ int main() {
 
     if (savedataControl(t, "s", NULL) == 0)
       printf("Saved progress");
+    
+    //TODO: hospital
+    if (t->status != DEAD && t->money >= TAXREVIVE) {
+      int tax = TAXREVIVE * t->evolution;
+      t->money -= tax;
+      printf("In a state of danger, has been able to pay for hospital costs %i",
+             tax);
+      t->status = NORMAL;
+    }
   }
 
   // Game over
