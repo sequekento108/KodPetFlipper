@@ -54,19 +54,20 @@ void doAction(Tamagotchi *t, int action) {
   char* selector;
   switch (action) {
   case FEED:
-    t->hunger += 13;
+    t->hunger += 30;
     if (t->life <= 99)
       t->life++;
     if (t->hunger > 100) {
       t->hunger = 100;
     }
+    t->happiness += 6;
     t->care--;
     printf("########  LAST ACTION: FEED\n");
     break;
   case MEDICINE:
     if (t->status == SICK) {
       t->status = HAPPY;
-      t->happiness = 30;
+      t->happiness = 13;
     }
     printf("########  LAST ACTION: MEDICINE\n");
     break;
@@ -119,7 +120,7 @@ void doAction(Tamagotchi *t, int action) {
     printf("########  LAST ACTION: TRAIN\n");
     break;
   case EXPEDITION:
-   //t->hunger -= 30;
+    t->hunger -= 30;
     t->happiness += 8;
     t->care--;
     printf("########  LAST ACTION: EXPEDITION: ");
@@ -139,8 +140,13 @@ void doAction(Tamagotchi *t, int action) {
         printf("nices data enemny load \n");
         if(whowinbattlegotchi(t, enemyt) == 0){
             printf("You win in BATTLE!! ^^ \n");
+            t->cycle+= 3;
+            t->life++;
+            t->happiness += 50;
         }else{
           printf("You losed in BATTLE!! :( \n");
+          t->cycle+= 1;
+          t->happiness -= 13;
         }
       }
       break;
