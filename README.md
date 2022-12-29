@@ -20,6 +20,7 @@
 - Action: Play --Games in firmware or --AutoGame.
 - Action: Tool --App/Plugin in firmware or --AutoTool.
 - Action: Random Cycle.
+- Action: Duel with friend added
 - Status: Hungry, Sick, Dead, Happy, Powered, God, Normal and  Dirty.
 - Personality: White, Red, Black, Green and  Grey.
 - Logic: Cycle Live combine with EXP-Flipper.

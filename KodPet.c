@@ -6,12 +6,12 @@
 //
 
 #include "system/kodpet.h"
+#include "system/battle.c"
+#include "system/battle.h"
 #include "system/savedata.c"
 #include "system/savedata.h"
 #include "system/social.c"
 #include "system/social.h"
-#include "system/battle.c"
-#include "system/battle.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,7 +51,7 @@ Tamagotchi *createTamagotchi() {
 void doAction(Tamagotchi *t, int action) {
   int probcritic = rand() % 10;
   int probcritictmp = rand() % 10;
-  char* selector;
+  char *selector;
   switch (action) {
   case FEED:
     t->hunger += 30;
@@ -127,7 +127,8 @@ void doAction(Tamagotchi *t, int action) {
     int actionexpedition = rand() % 3;
     switch (actionexpedition) {
     case FRIEND:
-      printf("and you found friend %s \n", readfolderselector("friends", 0, rand() % t->friends + 1));
+      printf("and you found friend %s \n",
+             readfolderselector("friends", 0, rand() % t->friends + 1));
       break;
     case ENEMY:
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
@@ -135,33 +136,49 @@ void doAction(Tamagotchi *t, int action) {
       Tamagotchi *enemyt = malloc(sizeof(Tamagotchi));
       char pathenemies[100] = "enemies/";
       strcat(pathenemies, selector);
-      
-      if(savedataControl(enemyt, "n", pathenemies) == 0){
+
+      if (savedataControl(enemyt, "n", pathenemies) == 0) {
         printf("nices data enemny load \n");
-        if(whowinbattlegotchi(t, enemyt) == 0){
-            printf("You win in BATTLE!! ^^ \n");
-            t->cycle+= 3;
-            t->life++;
-            t->happiness += 50;
-        }else{
+        if (whowinbattlegotchi(t, enemyt) == 0) {
+          printf("You win in BATTLE!! ^^ \n");
+          t->cycle += 3;
+          t->life++;
+          t->happiness += 50;
+        } else {
           printf("You losed in BATTLE!! :( \n");
-          t->cycle+= 1;
+          t->cycle += 1;
           t->happiness -= 13;
         }
       }
       break;
     case NPC:
-      printf("and you found npc X with the personality Y  %s \n", readfolderselector("npc", 1, rand() % t->npcs + 1));
+      printf("and you found npc X with the personality Y  %s \n",
+             readfolderselector("npc", 1, rand() % t->npcs + 1));
       break;
     default:
       break;
     }
     break;
-  }
-
-  if (t->status == DIRTY) {
-    t->happiness--;
-    t->life--;
+  case DUELFRIEND:
+    selector = readfolderselector("friends", 0, rand() % t->friends + 1);
+    printf("and you found duel friend wirh %s \n", selector);
+    Tamagotchi *enemyt = malloc(sizeof(Tamagotchi));
+    char pathenemies[100] = "friends/";
+    strcat(pathenemies, selector);
+    if (savedataControl(enemyt, "n", pathenemies) == 0) {
+      printf("nices data friend load \n");
+      if (whowinbattlegotchi(t, enemyt) == 0) {
+        printf("You win in BATTLE!! ^^ \n");
+        t->life++;
+        t->happiness += 25;
+      } else {
+        printf("You losed in BATTLE!! :( \n");
+        t->cycle += 1;
+        t->happiness -= 6;
+      }
+    }
+    printf("########  LAST ACTION: DUEL FRIEND\n");
+    break;
   }
 }
 
@@ -184,6 +201,11 @@ void updateStatus(Tamagotchi *t) {
     t->status = HUNGRY;
   } else {
     t->status = NORMAL;
+  }
+
+  if (t->status == DIRTY) {
+    t->happiness--;
+    t->life--;
   }
 
   if (t->care <= 0) {
@@ -245,10 +267,10 @@ void printStatus(Tamagotchi *t) {
   printf("Critic: %i\n", t->critic);
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
-  printf(
-      "\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-      "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
-      "TOOL \n 10. EXPEDITION \n 98. Random Cycle Time \n 99. Close test \n");
+  printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
+         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
+         "TOOL \n 10. EXPEDITION \n 11. DUEL FRIEND \n 98. "
+         "Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int actionrandom = rand() % 10;

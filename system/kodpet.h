@@ -53,8 +53,9 @@
 #define TRAIN 8
 #define TOOL 9
 #define EXPEDITION 10
+#define DUELFRIEND 11
 
-//Expedition
+//Expedition can found
 #define FRIEND 0
 #define ENEMY 1
 #define NPC 2

@@ -1,4 +1,6 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include "battle.h"
 
 int whowinbattlegotchi(Tamagotchi *player0, Tamagotchi *player1) {
   int life0, life1, rintelligenceinbase0, rstrengthinbase0, ragilityinbase0,
