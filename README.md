@@ -38,7 +38,7 @@
 - System: NPC good, bad and neutro. Add more from the internet.
 - System: Expedition. You can found (~random) an enemy (active: system battle), npc (active: development) or friend (active: development). 
 - System: Money
-
+- System: Item and inventory.
 
    and more in development...
 
