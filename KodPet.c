@@ -46,11 +46,9 @@ Tamagotchi *createTamagotchi() {
   t->money = 0;
   int countitem = 0;
   for (int i = 0; i < SIZEOBJECTLENGHT(t->inventory); i++) {
-    if (t->inventory[i] == 0)
-      t->inventory[i] = 3;
-    else
       t->inventory[i] = 0;
   }
+  t->inventory[0] = 3;
   readsocial(t);
   if (savedataControl(t, "n", NULL))
     return t;
