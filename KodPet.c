@@ -4,14 +4,16 @@
 //
 //  Created by KodamaDeveloper
 //
-
 #include "system/kodpet.h"
 #include "system/battle.c"
 #include "system/battle.h"
+#include "system/inventory.c"
+#include "system/inventory.h"
 #include "system/savedata.c"
 #include "system/savedata.h"
 #include "system/social.c"
 #include "system/social.h"
+#include "system/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -42,6 +44,13 @@ Tamagotchi *createTamagotchi() {
   t->life = 100;
   t->name = "KodPet";
   t->money = 0;
+  int countitem = 0;
+  for (int i = 0; i < SIZEOBJECTLENGHT(t->inventory); i++) {
+    if (t->inventory[i] == 0)
+      t->inventory[i] = 3;
+    else
+      t->inventory[i] = 0;
+  }
   readsocial(t);
   if (savedataControl(t, "n", NULL))
     return t;
@@ -276,10 +285,17 @@ void printStatus(Tamagotchi *t) {
   printf("Critic: %i\n", t->critic);
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
-  printf("\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
-         "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
-         "TOOL \n 10. EXPEDITION \n 11. DUEL FRIEND \n 98. "
-         "Random Cycle Time \n 99. Close test \n");
+  int countitem = 0;
+  for (int i = 0; i < SIZEOBJECTLENGHT(t->inventory); i++) {
+    if (t->inventory[i] >= 1)
+      countitem++;
+  }
+  printf("Total Different Items: %i\n", countitem);
+  printf(
+      "\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
+      "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
+      "TOOL \n 10. EXPEDITION \n 11. DUEL FRIEND \n 12. OPEN INVENTORY \n 98. "
+      "Random Cycle Time \n 99. Close test \n");
   scanf("%d", &selectionoptionuser);
 
   int actionrandom = rand() % 10;
@@ -320,8 +336,8 @@ int main() {
 
     if (savedataControl(t, "s", NULL) == 0)
       printf("Saved progress");
-    
-    //TODO: hospital
+
+    // TODO: hospital
     if (t->status != DEAD && t->money >= TAXREVIVE) {
       int tax = TAXREVIVE * t->evolution;
       t->money -= tax;

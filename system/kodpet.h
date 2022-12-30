@@ -55,6 +55,7 @@
 #define TOOL 9
 #define EXPEDITION 10
 #define DUELFRIEND 11
+#define OPENINVENTORY 12
 
 //Expedition can found
 #define FRIEND 0
@@ -81,6 +82,7 @@ typedef struct {
   int enemies;
   int npcs;
   int money; //15
+  int inventory[100]; //16
 } Tamagotchi;
 
 // Initialize a new Tamagotchi with default values

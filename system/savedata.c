@@ -5,6 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include "utils.h"
 
 void dataopen(char *selector) {
   char ch, *fname, social[100], socialt[100];
@@ -105,7 +106,7 @@ void dataclose(char *selector) {
     fptt = fopen("memorycard/temp.txt", "r");
   } else {
     fptt = fopen(socialt, "r");
-    printf("%s",socialt);
+    printf("%s", socialt);
   }
   if (fptt == NULL) {
     printf(" File does not exists or error in opening..!! 005");
@@ -170,10 +171,10 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     file_pointer = fopen(fileName, "r"); // reset the pointer
     char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10], str7[10],
         str8[10], str9[10], str10[10], str11[10], str12[10], str13[10],
-        str14[10], str15[10];
-    fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s", str1,
-           str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12,
-           str13, str14, str15);
+        str14[10], str15[10], str16[10];
+    fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s",
+           str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11,
+           str12, str13, str14, str15, str16);
 
     printf("----read the entire file progress----\n");
 
@@ -196,7 +197,9 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     t->life = parseInt(str13);
     t->name = str14;
     t->money = parseInt(str15);
-     
+    for (int i = 0; i < SIZEOBJECTLENGHT(str16); i++) {
+
+    }
     fclose(file_pointer);
     dataclose(selector);
     return 0;
