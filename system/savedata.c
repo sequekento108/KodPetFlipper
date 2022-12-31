@@ -171,7 +171,7 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     file_pointer = fopen(fileName, "r"); // reset the pointer
     char str1[10], str2[10], str3[10], str4[10], str5[10], str6[10], str7[10],
         str8[10], str9[10], str10[10], str11[10], str12[10], str13[10],
-        str14[10], str15[10], str16[200];
+        str14[10], str15[10], str16[201];
     fscanf(file_pointer, "%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s",
            str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11,
            str12, str13, str14, str15, str16);
@@ -198,9 +198,22 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     t->name = str14;
     t->money = parseInt(str15);
     int leninv = strlen(str16);
-    for (int i = 0; i < leninv; i++) {
+    for (int i = 0; i < 200; i++) {
       char ri = str16[i];
-      //TODO
+      int itemvalue, counti = 0;
+      switch (ri) {
+      case 'i':
+        counti++;
+        break;
+      case ' ':
+        /* code */
+        break;
+      case '0':
+      default:
+        itemvalue = (int)ri;
+        t->inventory[i - counti] = itemvalue;
+        break;
+      }
     }
     fclose(file_pointer);
     dataclose(selector);
@@ -216,13 +229,19 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     FILE *fptr;
     char fn[64];
     char str[64];
-    char *inventord;
-    for (int i = 0; i < SIZEOBJECTLENGHT(t->inventory); i++) {
-       char *itemvalue;
-       snprintf(itemvalue, 2, "%d", t->inventory[i]);
-       strcat(inventord, itemvalue);
-       strcat(inventord, "i");
+    char inventord[400] = "";
+    for (int i = 0; i < 100; i++) {
+
+      //char *itemvalue;
+      int val = t->inventory[i];
+      char value = val + '0';
+      // snprintf(itemvalue, 1, "%d", t->inventory[i]);
+      // strncat(itemvalue, &value, 2);
+      strncat(inventord, &value, 1);
+      strcat(inventord, "i");
     }
+
+    printf("Generated inventory");
 
     snprintf(str, sizeof(str),
              "%i %i %i %i %i %i %i %i %i %i %i %i %i %s %i %s", t->status,

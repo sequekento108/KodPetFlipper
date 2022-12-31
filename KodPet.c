@@ -45,7 +45,7 @@ Tamagotchi *createTamagotchi() {
   t->name = "KodPet";
   t->money = 0;
   int countitem = 0;
-  for (int i = 0; i < SIZEOBJECTLENGHT(t->inventory); i++) {
+  for (int i = 0; i < 100; i++) {
       t->inventory[i] = 0;
   }
   t->inventory[0] = 3;
@@ -284,7 +284,7 @@ void printStatus(Tamagotchi *t) {
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
   int countitem = 0;
-  for (int i = 0; i < SIZEOBJECTLENGHT(t->inventory); i++) {
+  for (int i = 0; i < 100; i++) {
     if (t->inventory[i] >= 1)
       countitem++;
   }
