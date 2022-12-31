@@ -131,6 +131,10 @@ void doAction(Tamagotchi *t, int action) {
     t->care--;
     printf("########  LAST ACTION: TRAIN\n");
     break;
+  case OPENINVENTORY:
+    openinventory(t);
+    printf("########  LAST ACTION: OPENINVENTORY\n");
+    break;
   case EXPEDITION:
     t->hunger -= 30;
     t->happiness += 8;
@@ -241,16 +245,12 @@ void updateStatus(Tamagotchi *t) {
 // Print the current status of the Tamagotchi
 void printStatus(Tamagotchi *t) {
   int selectionoptionuser = 0;
-  printf("## INVENTORY \n");
   int countitem = 0;
   for (int i = 0; i < 100; i++) {
     if (t->inventory[i] >= 1) {
       countitem++;
     }
-    printf("Value inventory pos %i with value %i \n", i, t->inventory[i]);
   }
-  printf("## \n");
-
   printf("Total Different Items: %i\n", countitem);
   printf("Friends: %i\n", t->friends);
   printf("Enemies: %i\n", t->enemies);
