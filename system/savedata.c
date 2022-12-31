@@ -198,9 +198,10 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     t->name = str14;
     t->money = parseInt(str15);
     int leninv = strlen(str16);
-    for (int i = 0; i < 200; i++) {
+    int counti = 0;
+    for (int i = 0; i < leninv; i++) {
       char ri = str16[i];
-      int itemvalue, counti = 0;
+      int itemvalue = 0;
       switch (ri) {
       case 'i':
         counti++;
@@ -210,7 +211,7 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
         break;
       case '0':
       default:
-        itemvalue = (int)ri;
+        itemvalue = ri - '0';
         t->inventory[i - counti] = itemvalue;
         break;
       }
@@ -232,7 +233,7 @@ int savedataControl(Tamagotchi *t, char *mode, char *selector) {
     char inventord[400] = "";
     for (int i = 0; i < 100; i++) {
 
-      //char *itemvalue;
+      // char *itemvalue;
       int val = t->inventory[i];
       char value = val + '0';
       // snprintf(itemvalue, 1, "%d", t->inventory[i]);

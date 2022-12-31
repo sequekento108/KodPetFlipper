@@ -46,7 +46,7 @@ Tamagotchi *createTamagotchi() {
   t->money = 0;
   int countitem = 0;
   for (int i = 0; i < 100; i++) {
-      t->inventory[i] = 0;
+    t->inventory[i] = 0;
   }
   t->inventory[0] = 3;
   readsocial(t);
@@ -241,6 +241,17 @@ void updateStatus(Tamagotchi *t) {
 // Print the current status of the Tamagotchi
 void printStatus(Tamagotchi *t) {
   int selectionoptionuser = 0;
+  printf("## INVENTORY \n");
+  int countitem = 0;
+  for (int i = 0; i < 100; i++) {
+    if (t->inventory[i] >= 1) {
+      countitem++;
+    }
+    printf("Value inventory pos %i with value %i \n", i, t->inventory[i]);
+  }
+  printf("## \n");
+
+  printf("Total Different Items: %i\n", countitem);
   printf("Friends: %i\n", t->friends);
   printf("Enemies: %i\n", t->enemies);
   printf("NPC: %i\n", t->npcs);
@@ -283,12 +294,7 @@ void printStatus(Tamagotchi *t) {
   printf("Critic: %i\n", t->critic);
   printf("Defend: %i\n", t->defend);
   printf("Life: %i\n", t->life);
-  int countitem = 0;
-  for (int i = 0; i < 100; i++) {
-    if (t->inventory[i] >= 1)
-      countitem++;
-  }
-  printf("Total Different Items: %i\n", countitem);
+
   printf(
       "\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
       "4. CARE \n 5. STUDY \n 6. WORK \n 7. INVESTIGATE \n 8. TRAIN \n 9. "
