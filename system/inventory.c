@@ -17,41 +17,43 @@ void openinventory(Tamagotchi *t) {
   scanf("%d", &selectionoptionuser);
   if (selectionoptionuser != 9999)
     useitem(t, selectionoptionuser);
-    //TODO
+  // TODO
 }
 
 void useitem(Tamagotchi *t, int pos) {
+  if (t->inventory[pos] >= 1) {
+    switch (pos) {
+    case POTION:
+      t->life += 30;
+      break;
+    case SUPERPOTION:
+      t->life += 60;
+      break;
+    case ULTRAPOTION:
+      t->life += 100;
+      break;
+    case ELIXIR_HAPPINESS:
+      t->happiness += 200;
+      break;
+    case ELIXIR_INTELLIGENCE:
+      t->intelligence += 2;
+      break;
+    case ELIXIR_STRENGHT:
+      t->strength += 2;
+      break;
+    case ELIXIR_AGILITY:
+      t->agility += 2;
+      break;
+    case ELIXIR_CRITIC:
+      t->critic++;
+      break;
+    case ELIXIR_DEFEND:
+      t->defend += 2;
+      break;
 
-  switch (pos) {
-  case POTION:
-    /* code */
-    break;
-  case SUPERPOTION:
-    /* code */
-    break;
-  case ULTRAPOTION:
-    /* code */
-    break;
-  case ELIXIR_HAPPINESS:
-    /* code */
-    break;
-  case ELIXIR_INTELLIGENCE:
-    /* code */
-    break;
-  case ELIXIR_STRENGHT:
-    /* code */
-    break;
-  case ELIXIR_AGILITY:
-    /* code */
-    break;
-  case ELIXIR_CRITIC:
-    /* code */
-    break;
-  case ELIXIR_DEFEND:
-    /* code */
-    break;
-
-  default:
-    break;
+    default:
+      break;
+    }
+    t->inventory[pos]--;
   }
 }
