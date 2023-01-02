@@ -12,3 +12,4 @@
 
 void openinventory(Tamagotchi* t);
 void useitem(Tamagotchi* t, int pos);
+void winrandomitem(Tamagotchi* t);

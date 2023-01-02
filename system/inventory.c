@@ -17,7 +17,6 @@ void openinventory(Tamagotchi *t) {
   scanf("%d", &selectionoptionuser);
   if (selectionoptionuser != 9999)
     useitem(t, selectionoptionuser);
-  // TODO
 }
 
 void useitem(Tamagotchi *t, int pos) {
@@ -55,5 +54,24 @@ void useitem(Tamagotchi *t, int pos) {
       break;
     }
     t->inventory[pos]--;
+  }
+}
+
+void winrandomitem(Tamagotchi *t) {
+  int randomcriticpotion = rand() % 8;
+  int randomitemwin = rand() % 8;
+
+  switch (randomitemwin) {
+  case 7:
+    if (randomcriticpotion == randomitemwin) {
+      t->inventory[7]++;
+    } else {
+      t->inventory[8]++;
+    }
+    break;
+
+  default:
+    t->inventory[randomitemwin]++;
+    break;
   }
 }
