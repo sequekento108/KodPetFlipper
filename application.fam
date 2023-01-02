@@ -1,7 +1,7 @@
 App(
     appid="kodpet",
     name="KodPetFlipper",
-    apptype=FlipperAppType.EXTERNAL,
+    apptype=FlipperAppType.PLUGIN,
     entry_point="kodpet",
     cdefines=["APP_MAIN"],
     requires=["gui"],
