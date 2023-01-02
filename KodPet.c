@@ -66,9 +66,6 @@ void doAction(Tamagotchi *t, int action) {
     t->hunger += 30;
     if (t->life <= 99)
       t->life++;
-    if (t->hunger > 100) {
-      t->hunger = 100;
-    }
     t->happiness += 6;
     t->care--;
     printf("########  LAST ACTION: FEED\n");
@@ -76,17 +73,13 @@ void doAction(Tamagotchi *t, int action) {
   case MEDICINE:
     if (t->status == SICK) {
       t->status = HAPPY;
-      t->happiness = 13;
+      t->happiness -= 13;
       t->money -= 3;
     }
     printf("########  LAST ACTION: MEDICINE\n");
     break;
   case PLAY:
     t->happiness += 12;
-    if (t->happiness > 100) {
-      t->happiness = 100;
-      t->status = HAPPY;
-    }
     t->care--;
     printf("########  LAST ACTION: PLAY\n");
     break;
@@ -107,7 +100,7 @@ void doAction(Tamagotchi *t, int action) {
     t->strength++;
     t->hunger -= 30;
     t->happiness -= 10;
-    t->money += 5;
+    t->money += 15;
     printf("########  LAST ACTION: WORK\n");
     break;
   case INVESTIGATE:
@@ -145,9 +138,9 @@ void doAction(Tamagotchi *t, int action) {
     case FRIEND:
       printf("and you found friend %s \n",
              readfolderselector("friends", 0, rand() % t->friends + 1));
-             winrandomitem(t);
-             t->hunger -= 13;
-             t->happiness += 50;
+      winrandomitem(t);
+      t->hunger -= 13;
+      t->happiness += 50;
       break;
     case ENEMY:
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
@@ -175,6 +168,7 @@ void doAction(Tamagotchi *t, int action) {
     case NPC:
       printf("and you found npc X with the personality Y  %s \n",
              readfolderselector("npc", 1, rand() % t->npcs + 1));
+             t->money += 60;
       break;
     default:
       break;
@@ -235,9 +229,9 @@ void updateStatus(Tamagotchi *t) {
     t->status = DIRTY;
     t->life--;
   }
-  int lifesg= t->defend + 100 + (t->evolution * 25) + (t->level*2);
-  if(t->life >= lifesg){
-     t->life = lifesg;
+  int lifesg = t->defend + 100 + (t->evolution * 25) + (t->level * 2);
+  if (t->life >= lifesg) {
+    t->life = lifesg;
   }
 
   if (t->cycle >= ((CYCLE_EVOLUTION * (1 + t->evolution)) + t->level)) {
@@ -245,9 +239,18 @@ void updateStatus(Tamagotchi *t) {
       t->evolution++;
     t->cycle = 0;
     t->level++;
-    t->life = 100;
+    t->life += 100;
     printf("########  LEVEL UP!!!\n");
   }
+  int maxhpp = 100 + t->intelligence;
+  if (t->happiness >= maxhpp) {
+    t->happiness = maxhpp;
+    t->status = HAPPY;
+  }
+int maxh = 100 + t->strength;
+    if (t->hunger > maxh) {
+      t->hunger = 100;
+    }
 }
 
 // Print the current status of the Tamagotchi
@@ -264,8 +267,8 @@ void printStatus(Tamagotchi *t) {
   printf("Enemies: %i\n", t->enemies);
   printf("NPC: %i\n", t->npcs);
   printf("########   %s\n", t->name);
-  printf("Hunger: %d\n", t->hunger);
-  printf("Happiness: %d\n", t->happiness);
+  printf("Hunger: %d/%i\n", t->hunger, 100 + t->strength);
+  printf("Happiness: %d/%i\n", t->happiness, 100 + t->intelligence);
   switch (t->status) {
   case HUNGRY:
     printf("Status: Hungry\n");
@@ -301,7 +304,7 @@ void printStatus(Tamagotchi *t) {
   printf("Agility: %i\n", t->agility);
   printf("Critic: %i\n", t->critic);
   printf("Defend: %i\n", t->defend);
-  printf("Life: %i\n", t->life);
+  printf("Life: %i/%i\n", t->life, t->defend + 100 + (t->evolution * 25) + (t->level * 2));
 
   printf(
       "\n\n######## Select Option: \n 0. FEED. \n 1. MEDICINE \n 2. PLAY \n "
