@@ -49,6 +49,9 @@ void useitem(Tamagotchi *t, int pos) {
     case ELIXIR_DEFEND:
       t->defend += 2;
       break;
+    case EMERGENCYFOOD:
+      t->hunger += 100;
+      break;
 
     default:
       break;

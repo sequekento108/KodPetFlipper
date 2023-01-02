@@ -8,6 +8,7 @@
 #define ELIXIR_AGILITY 6
 #define ELIXIR_CRITIC 7
 #define ELIXIR_DEFEND 8
+#define EMERGENCYFOOD 9
 
 
 void openinventory(Tamagotchi* t);

@@ -146,6 +146,8 @@ void doAction(Tamagotchi *t, int action) {
       printf("and you found friend %s \n",
              readfolderselector("friends", 0, rand() % t->friends + 1));
              winrandomitem(t);
+             t->hunger -= 13;
+             t->happiness += 50;
       break;
     case ENEMY:
       selector = readfolderselector("enemies", 0, rand() % t->enemies + 1);
@@ -232,6 +234,10 @@ void updateStatus(Tamagotchi *t) {
   if (t->care <= 0) {
     t->status = DIRTY;
     t->life--;
+  }
+  int lifesg= t->defend + 100 + (t->evolution * 25) + (t->level*2);
+  if(t->life >= lifesg){
+     t->life = lifesg;
   }
 
   if (t->cycle >= ((CYCLE_EVOLUTION * (1 + t->evolution)) + t->level)) {
